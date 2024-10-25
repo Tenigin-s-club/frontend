@@ -1,11 +1,4 @@
 import { LoginForm } from "@/features/AuthByEmail/ui";
-import style from "./LoginPage.module.scss";
-const LoginPage = () => {
-  return (
-    <div className={style.LoginPage}>
-      <LoginForm />
-    </div>
-  );
-};
+const LoginPage = () => <LoginForm />;
 
 export default LoginPage;

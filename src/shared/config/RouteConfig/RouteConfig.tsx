@@ -7,67 +7,81 @@ import { MyTestsPage } from "@/pages/MyTestsPage";
 import { SupportPage } from "@/pages/SupportPage";
 import { ProfilePage } from "@/pages/ProfilePage";
 import { CreateTestPage } from "@/pages/CreateTestPage";
-import { OnlyAuth, OnlyUnAuth } from "./ProtectedRoute";
+import { ProtectedRoute } from "../../../app/providers/router/ui/ProtectedRoute";
 import { PassingTestPage } from "@/pages/PassingTestPage";
+import { createBrowserRouter, RouteObject } from "react-router-dom";
+import AuthLayout from "@/app/layouts/authLayout";
+import MainLayout from "@/app/layouts/mainLayout";
 
 export interface IListRoutes {
   element: ReactNode;
   path: string;
 }
 
-const onlyAuthRoutes: IListRoutes[] = [
+const authRoutes: RouteObject[] = [
   {
-    element: <MyTestsPage />,
-    path: "/mytests",
-  },
-  {
-    element: <CreateTestPage />,
-    path: "/createtest/:title",
-  },
-  {
-    element: <PassingTestPage />,
-    path: "/passingtest/:idTest",
-  },
-  {
-    element: <PassingTestPage />,
-    path: "/passingtest/:idTest/:numberQuestion",
-  },
-  {
-    element: <SupportPage />,
-    path: "/support",
-  },
-  {
-    element: <ProfilePage />,
-    path: "/profile",
-  },
-];
-
-const onlyUnAuthRoutes: IListRoutes[] = [
-  {
-    element: <MainPage />,
-    path: "/",
-  },
-  {
-    element: <LoginPage />,
-    path: "/login",
-  },
-  {
-    element: <RegisterPage />,
+    element: (
+      <AuthLayout>
+        <RegisterPage />
+      </AuthLayout>
+    ),
     path: "/register",
   },
-];
-
-export const ListRoutes: IListRoutes[] = [
-  ...onlyAuthRoutes.map((route) => ({
-    ...route,
-    element: <OnlyAuth component={route.element} />,
-  })),
-  ...onlyUnAuthRoutes.map((route) => ({
-    ...route,
-    element: <OnlyUnAuth component={route.element} />,
-  })),
   {
-    element: <NotFoundPage />,
-    path: "*",
+    element: (
+      <AuthLayout>
+        <LoginPage />
+      </AuthLayout>
+    ),
+    path: "/login",
   },
 ];
+
+export const appRoutersConfig = createBrowserRouter([
+  ...authRoutes,
+  {
+    path: "/",
+    element: (
+      <ProtectedRoute>
+        <MainLayout />
+      </ProtectedRoute>
+    ),
+    errorElement: (
+      <ProtectedRoute>
+        <MainLayout>
+          <NotFoundPage />
+        </MainLayout>
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        path: "/",
+        element: <MainPage />,
+      },
+      {
+        element: <MyTestsPage />,
+        path: "/mytests",
+      },
+      {
+        element: <CreateTestPage />,
+        path: "/createtest/:title",
+      },
+      {
+        element: <PassingTestPage />,
+        path: "/passingtest/:idTest",
+      },
+      {
+        element: <PassingTestPage />,
+        path: "/passingtest/:idTest/:numberQuestion",
+      },
+      {
+        element: <SupportPage />,
+        path: "/support",
+      },
+      {
+        element: <ProfilePage />,
+        path: "/profile",
+      },
+    ],
+  },
+]);
