@@ -1,0 +1,20 @@
+@import "@styles/global.scss";
+.ProfileBody {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 25px;
+  margin-right: 10%;
+  .BackBlock {
+    background-color: $color1;
+    padding: 1rem;
+    border: $blocksBorder;
+    border-radius: 15px;
+    box-shadow: $blocksShadow;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,13 @@
+@import "@styles/global.scss";
+.CreateTest {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: $color1;
+  box-shadow: $blocksShadow;
+  border-radius: 10px;
+  border: $blocksBorder;
+  transition: 0.2s;
+  cursor: pointer;
+}

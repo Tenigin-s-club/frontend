@@ -1,0 +1,55 @@
+@import "@styles/global.scss";
+.ProfileCard {
+  height: 80vh;
+  min-width: 400px;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: $blocksShadow;
+  border: $blocksBorder;
+  background-color: $color1;
+  padding: 2rem;
+  border-radius: 15px;
+  .Header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .AvatarBlock {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 20px;
+    width: 100%;
+    min-width: 300px;
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  .NameBlock {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .InputsBlock {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
+    width: 70%;
+  }
+  .Buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: 50%;
+  }
+}
+
+.trashIcon {
+  cursor: pointer;
+}

@@ -1,0 +1,33 @@
+@import "@styles/global.scss";
+
+.CustomInput {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  background-color: $color2;
+  border-radius: 6px;
+  input {
+    width: 100%;
+    margin: 5px 15px;
+    line-height: 24px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+
+  input[type="checkbox"] {
+    -ms-transform: scale(2);
+    -moz-transform: scale(2);
+    -webkit-transform: scale(2);
+    -o-transform: scale(2);
+    transform: scale(2);
+    padding: 10px;
+  }
+  .icon {
+    margin: 5px 0 5px 10px;
+  }
+}
+.checkbox {
+  background-color: transparent;
+  width: auto;
+}
