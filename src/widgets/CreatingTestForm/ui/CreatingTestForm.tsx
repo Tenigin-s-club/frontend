@@ -12,7 +12,7 @@ type Inputs = {
 };
 
 interface CreatingTestFormProps {
-  closeModal?: () => void;
+  closeModal?: VoidFunction;
 }
 
 const CreatingTestForm = ({ closeModal }: CreatingTestFormProps) => {

@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 interface ModalProps {
   isOpened: boolean;
   children: ReactNode;
-  onClose?: () => void;
+  onClose?: VoidFunction;
 }
 const Modal = ({ isOpened, children, onClose }: ModalProps) => {
   const onContentClick = (e: React.MouseEvent) => {

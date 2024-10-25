@@ -4,7 +4,7 @@ import SettingIcon from "@/shared/assets/setting.svg";
 import LinkIcon from "@/shared/assets/Link.svg";
 import { link } from "fs";
 export interface TestCardProps extends TestCardType {
-  onClick?: () => void;
+  onClick?: VoidFunction;
 }
 const TestCard = ({ title, description, id, onClick }: TestCardProps) => {
   const returnLink = () => {
