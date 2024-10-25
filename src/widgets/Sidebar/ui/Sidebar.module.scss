@@ -1,6 +1,6 @@
 @import "@styles/global.scss";
 .Sidebar {
-  background-color: $color2;
+  background-color: $captionColor;
   width: 20%;
   min-width: 200px;
   display: flex;
@@ -24,8 +24,8 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    border-top: solid 1px $color5;
-    border-bottom: solid 1px $color5;
+    border-top: solid 1px $headingColor;
+    border-bottom: solid 1px $headingColor;
   }
   a {
     padding: 10px 20px;
@@ -33,11 +33,11 @@
   }
   .activeLink {
     width: 100%;
-    border-radius: 6px;
+    border-radius: $smallBorder;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 10px 20px;
-    background-color: $color4;
+    background-color: $paragraphColor;
   }
 }

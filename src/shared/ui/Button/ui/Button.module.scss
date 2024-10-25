@@ -3,24 +3,20 @@
 .button {
   overflow: hidden;
   position: relative;
-  background-color: $color1;
-  border-radius: 6px;
+  background-color: $accentColor1;
+  border-radius: $smallBorder;
   display: flex;
   justify-content: center;
   gap: 10px;
-  border: 1px solid $color3;
   padding: 15px;
   cursor: pointer;
   transition: 0.2s;
-}
-.normal {
-  &:hover {
-    background-color: $color12;
-  }
+  border: none;
+  color: $blockBackground;
 }
 
 .primary {
-  background-color: $color1;
+  background-color: $blockBackground;
   border: $blocksBorder;
   box-shadow: $blocksShadow;
   &:hover {

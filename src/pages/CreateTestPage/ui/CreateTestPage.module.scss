@@ -14,7 +14,7 @@
       .addTest {
         width: 100%;
         padding: 20px;
-        background-color: $color1;
+        background-color: $blockBackground;
         text-align: center;
         cursor: pointer;
       }
@@ -33,10 +33,10 @@
       top: 10vh;
       width: 30%;
       text-align: center;
-      background-color: $color2;
+      background-color: $captionColor;
       padding: 20px;
       height: 75vh;
-      border-radius: 6px;
+      border-radius: $smallBorder;
     }
   }
 }

@@ -6,12 +6,8 @@ import style from "./LoginForm.module.scss";
 
 import Button from "@/shared/ui/Button/index";
 import Input from "@/shared/ui/Input/index";
-import LoginHandIcon from "@/shared/assets/LoginHand.svg";
 import DogIcon from "@/shared/assets/Dog.svg";
 import LockIcon from "@/shared/assets/Lock.svg";
-import AppleIcon from "@/shared/assets/Apple.svg";
-import GoogleIcon from "@/shared/assets/Google.svg";
-import TelegramIcon from "@/shared/assets/Telegram.svg";
 import { loginFetch } from "../../model/services/AuthByEmail/AuthByEmail";
 
 type Inputs = {
@@ -35,13 +31,7 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.LoginForm}>
       <div className={style.title}>
-        <h3>
-          С возвращением! <LoginHandIcon />
-        </h3>
-        <p>
-          Открой для себя лучшее приложение для создания и прохождения
-          проверочных работ
-        </p>
+        <h3>Вход на платформу</h3>
       </div>
 
       <div className={style.InputBlock}>
@@ -67,22 +57,9 @@ const LoginForm = () => {
           type="password"
           {...register("password", { required: true })}
         />
-        <Link to="/register">Забыли пароль?</Link>
       </div>
 
       <Button type="submit">Войти</Button>
-
-      <div className={style.or}>
-        <hr />
-        Или с помощью
-        <hr />
-      </div>
-
-      <div className={style.Icons}>
-        <AppleIcon />
-        <GoogleIcon />
-        <TelegramIcon />
-      </div>
 
       <Link to="/register">
         Ещё нет аккаунта?{" "}

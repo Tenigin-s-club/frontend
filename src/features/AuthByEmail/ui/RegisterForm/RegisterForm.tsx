@@ -37,13 +37,7 @@ const RegisterForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.RegisterForm}>
       <div className={style.title}>
-        <h3>
-          Зарегистрируйся! <LikeHandIcon />
-        </h3>
-        <p>
-          Открой для себя лучшее приложение для создания и прохождения
-          проверочных работ
-        </p>
+        <h3>Регистрация</h3>
       </div>
 
       <div className={style.InputBlock}>
@@ -83,18 +77,6 @@ const RegisterForm = () => {
       </div>
       <div className={style.Button}>
         <Button type="submit">Создать аккаунт</Button>
-      </div>
-
-      <div className={style.or}>
-        <hr />
-        Или с помощью
-        <hr />
-      </div>
-
-      <div className={style.Icons}>
-        <AppleIcon />
-        <GoogleIcon />
-        <TelegramIcon />
       </div>
 
       <Link to={"/login"}>

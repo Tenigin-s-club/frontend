@@ -4,11 +4,12 @@
   display: inline-flex;
   align-items: center;
   width: 100%;
-  background-color: $color2;
-  border-radius: 6px;
+  background-color: $blockBackground;
+  border: solid 1px $captionColor;
+  border-radius: $smallBorder;
   input {
     width: 100%;
-    margin: 5px 15px;
+    margin: 10px 15px;
     line-height: 24px;
     background-color: transparent;
     border: none;
