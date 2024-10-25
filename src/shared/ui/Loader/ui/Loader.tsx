@@ -1,9 +1,17 @@
 import style from "./Loader.module.scss";
 const Loader = () => {
   return (
-    <div className={style.Loader}>
-      <h1 className={style.title}>Loading</h1>
-      <div className={style.rainbow_marker_loader}></div>
+    <div className={style.LoaderComponent}>
+      <div className={style.wrapper}>
+        <div className={style.loader}>
+          <div className={style.train}></div>
+          <div className={style.track}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
