@@ -14,6 +14,7 @@ import AppleIcon from "@/shared/assets/Apple.svg";
 import GoogleIcon from "@/shared/assets/Google.svg";
 import TelegramIcon from "@/shared/assets/Telegram.svg";
 import { registerFetch } from "../../model/services/AuthByEmail/AuthByEmail";
+import { showErrorNotification } from "@/shared/helpers/notification";
 
 type Inputs = {
   fullname: string;

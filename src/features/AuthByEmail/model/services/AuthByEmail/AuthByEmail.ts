@@ -1,4 +1,6 @@
 import axiosInstance from "@/shared/config/ApiConfig/ApiConfig";
+import { showErrorNotification } from "@/shared/helpers/notification";
+import { AxiosError } from "axios";
 
 export const loginFetch = async (email: string, password: string) => {
   try {
@@ -12,7 +14,8 @@ export const loginFetch = async (email: string, password: string) => {
     );
     return true;
   } catch (e) {
-    console.log(e);
+    const error = e as AxiosError;
+    showErrorNotification(error.message);
     return false;
   }
 };
@@ -36,7 +39,8 @@ export const registerFetch = async (
 
     return true;
   } catch (e) {
-    console.log(e);
+    const error = e as AxiosError;
+    showErrorNotification(error.message);
     return false;
   }
 };
