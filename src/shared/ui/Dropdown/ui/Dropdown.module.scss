@@ -43,3 +43,11 @@
 .EmptyDropdownDescription {
   font-weight: 300;
 }
+
+.input {
+  width: 400px;
+  background-color: transparent;
+  & input::placeholder {
+    color: #b5bcc2;
+  }
+}

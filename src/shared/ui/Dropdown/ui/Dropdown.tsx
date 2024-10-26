@@ -9,12 +9,14 @@ interface DropdownProps<T> {
   options: T[];
   selectedOption: T;
   setSelectedOption: (n: T) => void;
+  placeholder?: string;
 }
 
 const Dropdown = ({
   options = [],
   selectedOption,
   setSelectedOption,
+  placeholder,
 }: DropdownProps<string>) => {
   const [inputValue, setInputValue] = useState(selectedOption);
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +25,13 @@ const Dropdown = ({
   const dropdownRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    setInputValue(selectedOption);
+    setSelectedOption(value);
+  }, [value]);
+
+  useEffect(() => {
+    if (value !== selectedOption) {
+      setInputValue(selectedOption);
+    }
   }, [selectedOption]);
 
   const handleOptionClick = (option: string) => {
@@ -57,7 +65,13 @@ const Dropdown = ({
 
   return (
     <div style={{ position: "relative", maxWidth: 400 }}>
-      <Input ref={inputRef} value={inputValue} onChange={handleClick} />
+      <Input
+        className={style.input}
+        placeholder={placeholder}
+        ref={inputRef}
+        value={inputValue}
+        onChange={handleClick}
+      />
       {isOpen && (
         <ul className={style.Dropdown} ref={dropdownRef}>
           {!!options.filter((el) =>

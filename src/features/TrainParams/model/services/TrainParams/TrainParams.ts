@@ -28,14 +28,7 @@ export const getTrainsFetch = async (data: TrainsParams): Promise<string[]> => {
   }
 };
 
-export const getCities = async (): Promise<string[]> => {
-  try {
-    return await axiosInstance.get("/cities", {
-      headers: { "Content-Type": "application/json" },
-    });
-  } catch (e) {
-    const error = e as AxiosError;
-    showErrorNotification(error.message);
-    throw new Error(error.message);
-  }
-};
+export const getCities = async () =>
+  await axiosInstance.get("/search/cities", {
+    headers: { "Content-Type": "application/json" },
+  });
