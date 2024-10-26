@@ -1,0 +1,58 @@
+@import "@styles/index.scss";
+.TicketsSlider {
+  width: 100%;
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+.title {
+  margin: 2rem 0;
+}
+.dates {
+  cursor: grab;
+  display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include mobile {
+    animation: opacityToggle 1s;
+  }
+}
+
+.SliderButton {
+  cursor: pointer;
+  margin: 0 0.5rem;
+}
+
+.prev {
+  transform: rotate(180deg);
+}
+
+.swiperButtonDisable {
+  opacity: 0;
+}
+
+.swiperPagination {
+  position: absolute;
+  bottom: 34px;
+  width: 95vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --swiper-theme-color: #f47123;
+  div:first-child {
+    width: auto;
+  }
+}
+
+@keyframes opacityToggle {
+  0% {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

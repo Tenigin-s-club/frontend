@@ -5,22 +5,9 @@ import { urls } from "@/shared/constants/urls";
 import SharedIcon from "@/shared/assets/share.svg";
 import QrImage from "@/shared/assets/QrCode.png";
 import QRModal from "@/widgets/QRModal";
+import TwoTrainsIcon from "@/shared/assets/twoTrain.svg";
+import { TiketType } from "@/features/TicketsOperations/model/TicketsOperations.types";
 
-interface pathI {
-  time: string;
-  city: string;
-  date: string;
-}
-
-interface TiketProps {
-  id: string;
-  firstDate: pathI;
-  secondDate: pathI;
-  typeWagon: string;
-  typeShelf: string;
-  wagon: number;
-  seat: number;
-}
 const Tiket = ({
   id,
   firstDate,
@@ -29,7 +16,8 @@ const Tiket = ({
   typeShelf,
   wagon,
   seat,
-}: TiketProps) => {
+  travelTime,
+}: TiketType) => {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isQRModalOpen, setIsQRModalOpen] = useState(false);
   return (
@@ -58,6 +46,11 @@ const Tiket = ({
               <p>{firstDate.city}</p>
               <span>{firstDate.date}</span>
             </div>
+            <div className={style.twoTrains}>
+              <p>В пути: {travelTime}</p>
+              <TwoTrainsIcon />
+            </div>
+
             <div className={style.path}>
               <h4 className={style.accent}>{secondDate.time}</h4>
               <p>{secondDate.city}</p>

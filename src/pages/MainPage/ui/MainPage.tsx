@@ -1,10 +1,10 @@
-import TrainParams from "@/features/TrainParams";
 import style from "./MainPage.module.scss";
-import classNames from "classnames";
+
+import FreeOrBooked from "@/widgets/FreeOrBooked/ui/FreeOrBooked";
 const MainPage = () => {
   return (
-    <div className={classNames(["container", style.MainPage])}>
-      <TrainParams />
+    <div className={style.MainPage}>
+      <FreeOrBooked />
     </div>
   );
 };

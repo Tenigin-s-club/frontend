@@ -8,6 +8,9 @@ const CartPage = () => {
       secondDate={{ time: "12:10", city: "Moskowвав", date: "27 окт, вб" }}
       typeWagon="плацкарт"
       typeShelf="верхняя"
+      wagon={0}
+      seat={0}
+      travelTime="234 часов 45 минут"
     />
   );
 };

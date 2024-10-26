@@ -4,20 +4,8 @@ import SharedIcon from "@/shared/assets/share.svg";
 import ShareModal from "@/widgets/ShareModal";
 import { useState } from "react";
 import { urls } from "@/shared/constants/urls";
-
-interface pathI {
-  time: string;
-  city: string;
-  date: string;
-}
-
-interface TrainCardProps {
-  id: string;
-  firstDate: pathI;
-  secondDate: pathI;
-  fitsFree: number;
-  fitsPurchased: number;
-}
+import TwoTrainsIcon from "@/shared/assets/twoTrain.svg";
+import { TrainCardType } from "@/features/TicketsOperations/model/TicketsOperations.types";
 
 const TrainCard = ({
   id,
@@ -25,7 +13,8 @@ const TrainCard = ({
   secondDate,
   fitsFree,
   fitsPurchased,
-}: TrainCardProps) => {
+  booked,
+}: TrainCardType) => {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   return (
     <div className={style.TrainCard}>
@@ -52,6 +41,7 @@ const TrainCard = ({
             <p>{firstDate.city}</p>
             <span>{firstDate.date}</span>
           </div>
+          <TwoTrainsIcon />
           <div className={style.path}>
             <h4 className={style.accent}>{secondDate.time}</h4>
             <p>{secondDate.city}</p>
@@ -70,7 +60,11 @@ const TrainCard = ({
         </div>
       </div>
 
-      <Button>Забронировать</Button>
+      {booked ? (
+        <Button variant="text">Встать в очередь</Button>
+      ) : (
+        <Button>Забронировать</Button>
+      )}
     </div>
   );
 };

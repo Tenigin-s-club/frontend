@@ -1,11 +1,15 @@
 @import "@styles/index.scss";
 .Tiket {
-  width: 50%;
+  width: 55%;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 450px;
   text-align: left;
+  min-width: 650px;
+  @include mobile {
+    width: 95%;
+    min-width: 200px;
+  }
   .mainTiket {
     width: 70%;
     .header {
@@ -17,7 +21,7 @@
       justify-content: space-between;
     }
     .body {
-      padding: 1rem 2rem;
+      padding: 1rem;
       background-color: $blockBackground;
       display: flex;
       flex-direction: column;
@@ -27,6 +31,13 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        @include mobile {
+          svg,
+          p,
+          span {
+            display: none;
+          }
+        }
         .path {
           h4 {
             font-size: 1.5rem;
@@ -61,6 +72,18 @@
   }
   .accent {
     color: $accentColor1;
+  }
+  .twoTrains {
+    position: relative;
+
+    p {
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.7rem;
+      color: $captionColor;
+    }
   }
   .qrBlock {
     display: inline-block;

@@ -11,7 +11,7 @@
   padding: 15px;
   cursor: pointer;
   transition: 0.2s;
-  border: none;
+  border: solid 1px $accentColor1;
   color: $blockBackground;
 }
 
@@ -29,6 +29,9 @@
 
 .text {
   background-color: transparent;
+  border: solid 1px $captionColor;
+  color: $captionColor;
+  border-radius: $smallBorder;
 }
 
 .danger {
