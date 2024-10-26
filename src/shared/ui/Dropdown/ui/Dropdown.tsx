@@ -1,9 +1,10 @@
-import { useRef, useEffect, useState, ChangeEvent } from "react";
+import { useEffect, useState, useRef, ChangeEvent } from "react";
 import Input from "../../Input";
 import style from "./Dropdown.module.scss";
 import { useDebounce } from "@/shared/hooks/useDebounce";
 import { EmptyDropdown } from "./EmptyDropdown";
 import MapMarker from "@/shared/assets/MapMarker.svg";
+
 interface DropdownProps<T> {
   options: T[];
   selectedOption: T;
@@ -15,33 +16,22 @@ const Dropdown = ({
   selectedOption,
   setSelectedOption,
 }: DropdownProps<string>) => {
-  const [inputValue, setInputValue] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
-  const value = useDebounce(inputValue, 300);
-
-  useEffect(() => {
-    setSelectedOption(value);
-    if (inputValue.length > 2 && isEditing) {
-      setIsOpen(true);
-    } else {
-      setIsOpen(false);
-    }
-  }, [value]);
-
-  useEffect(() => {
-    setSelectedOption(value);
-  }, [isEditing]);
-
+  const [inputValue, setInputValue] = useState(selectedOption);
   const [isOpen, setIsOpen] = useState(false);
+  const value = useDebounce(inputValue, 300);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const dropdownRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    setInputValue(selectedOption);
+  }, [selectedOption]);
 
   const handleOptionClick = (option: string) => {
-    setIsEditing(false);
     setInputValue(option);
+    setSelectedOption(option);
     setIsOpen(false);
   };
 
-  const inputRef = useRef<HTMLInputElement>(null);
-  const dropdownRef = useRef<HTMLUListElement>(null);
   const handleClickOutside = (e: MouseEvent) => {
     if (
       dropdownRef.current &&
@@ -61,8 +51,8 @@ const Dropdown = ({
   }, []);
 
   const handleClick = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsEditing(true);
     setInputValue(e.target.value);
+    setIsOpen(true);
   };
 
   return (
@@ -71,12 +61,10 @@ const Dropdown = ({
       {isOpen && (
         <ul className={style.Dropdown} ref={dropdownRef}>
           {!!options.filter((el) =>
-            el.toLowerCase().includes(selectedOption.toLowerCase())
+            el.toLowerCase().includes(value.toLowerCase())
           ).length &&
             options
-              .filter((el) =>
-                el.toLowerCase().includes(selectedOption.toLowerCase())
-              )
+              .filter((el) => el.toLowerCase().includes(value.toLowerCase()))
               .map((option, index) => (
                 <li
                   key={index}
@@ -88,7 +76,7 @@ const Dropdown = ({
                 </li>
               ))}
           {!options.filter((el) =>
-            el.toLowerCase().includes(selectedOption.toLowerCase())
+            el.toLowerCase().includes(value.toLowerCase())
           ).length && <EmptyDropdown />}
         </ul>
       )}
