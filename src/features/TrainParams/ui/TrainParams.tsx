@@ -12,7 +12,9 @@ import ReverseIcon from "@/shared/assets/reverse.svg";
 import Calendar from "@/shared/ui/Calendar";
 import Button from "@/shared/ui/Button";
 import Input from "@/shared/ui/Input";
-import { Radios } from "@/shared/ui/Radios/ui/Radios";
+import Radios from "@/shared/ui/Radios/";
+import classNames from "classnames";
+import FromTo from "@/shared/ui/FromTo";
 // type Inputs = {
 //   fullname: string;
 //   email: string;
@@ -35,7 +37,20 @@ const typeOfWagon = {
   Платцкарт: "PLATZCART",
 };
 
-const typeOfShelf = ["Верхняя", "Нижняя"];
+const typeOfShelf = [
+  {
+    label: "Не имеет значения",
+    id: 0,
+  },
+  {
+    label: "Верхняя",
+    id: 1,
+  },
+  {
+    label: "Нижняя",
+    id: 2,
+  },
+];
 
 const TrainParams = () => {
   // const {
@@ -51,7 +66,15 @@ const TrainParams = () => {
   const [areAdvancedOpen, setAreAdvancedOpen] = useState(false);
   const [trainId, setTrainId] = useState<number | undefined>();
   const [trainType, setTrainType] = useState<string | undefined>();
-  const [activeTypeOfShelf, setActiveTypeOfShelf] = useState<number>(0);
+  const [fromDepartureTime, setFromDepartureTime] = useState<Date | null>(null);
+  const [toDepartureTime, setToDepartureTime] = useState<Date | null>(null);
+  const [fromArrivingTime, setFromArrivingTime] = useState<Date | null>(null);
+  const [toArrivingTime, setToArrivingTime] = useState<Date | null>(null);
+  const [fromHoursInPath, setFromHoursInPath] = useState(0);
+  const [toHoursInPath, setToHoursInPath] = useState(168);
+  const [activeTypeOfShelf, setActiveTypeOfShelf] = useState<number>(
+    typeOfShelf[0].id
+  );
 
   const [areCitiesLoading, setAreCitiesLoading] = useState(false);
   useEffect(() => {
@@ -115,44 +138,80 @@ const TrainParams = () => {
           />
         </label>
       </div>
-      <h3 onClick={() => setAreAdvancedOpen((prev) => !prev)}>
+      <h3
+        className={classNames([
+          style.titleAdvanced,
+          areAdvancedOpen && style.titleAdvancedActive,
+        ])}
+        onClick={() => setAreAdvancedOpen((prev) => !prev)}
+      >
         Доп. параметры <CrossIcon />
       </h3>
-      <div>
-        <label className={style.label}>
-          <span>ID поезда:</span>
-          <Input
-            value={trainId}
-            onChange={(v) => setTrainId(Number(v.target.value))}
-            type="number"
-          />
-        </label>
-        <label className={style.label}>
-          <span>Тип вагона:</span>
-          <Dropdown
-            options={Object.keys(typeOfWagon)}
-            selectedOption={trainType || ""}
-            setSelectedOption={(n) => setTrainType(n)}
-          />
-        </label>
-        <label className={style.label}>
-          <span>Тип полки:</span>
-          <Radios
-            items={typeOfShelf.map((type, index) => ({
-              label: type,
-              id: index,
-            }))}
-            activeId={activeTypeOfShelf}
-            setActiveId={(n) => setActiveTypeOfShelf(n)}
-          />
-        </label>
-      </div>
-      <Button
-        onClick={() => console.log(activeTypeOfShelf)}
-        className={style.SubmitButton}
+      <div
+        className={classNames([
+          style.advanced,
+          areAdvancedOpen && style.advancedActive,
+        ])}
       >
-        Найти билеты
-      </Button>
+        <div
+          className={classNames([
+            style.advancedContent,
+            areAdvancedOpen && style.advancedContentActive,
+          ])}
+        >
+          <div className={style.label}>
+            <span>ID поезда:</span>
+            <Input
+              value={trainId}
+              onChange={(v) => setTrainId(Number(v.target.value))}
+              type="number"
+            />
+          </div>
+          <div className={style.label}>
+            <span>Тип вагона:</span>
+            <Dropdown
+              options={Object.keys(typeOfWagon)}
+              selectedOption={trainType || ""}
+              setSelectedOption={(n) => setTrainType(n)}
+            />
+          </div>
+          <div className={style.label}>
+            <span>Тип полки:</span>
+            <Radios
+              items={typeOfShelf}
+              horizontal
+              activeId={activeTypeOfShelf}
+              setActiveId={(n) => setActiveTypeOfShelf(n)}
+            />
+          </div>
+        </div>
+        <div className={style.times}>
+          <FromTo
+            label={"Время поездки:"}
+            fromValue={fromHoursInPath}
+            setFromValue={(newVal: number) => setFromHoursInPath(newVal)}
+            toValue={toHoursInPath}
+            setToValue={(newVal: number) => setToHoursInPath(newVal)}
+          />
+          <FromTo
+            label={"Время отправления:"}
+            fromValue={fromDepartureTime}
+            setFromValue={(newVal: Date | null) => setFromDepartureTime(newVal)}
+            type="time"
+            toValue={toDepartureTime}
+            setToValue={(newVal: Date | null) => setToDepartureTime(newVal)}
+          />
+          <FromTo
+            label={"Время прибытия:"}
+            fromValue={fromArrivingTime}
+            setFromValue={(newVal: Date | null) => setFromArrivingTime(newVal)}
+            type="time"
+            toValue={toArrivingTime}
+            setToValue={(newVal: Date | null) => setToArrivingTime(newVal)}
+          />
+        </div>
+      </div>
+      <Button className={style.SubmitButton}>Найти билеты</Button>
     </div>
   );
 };

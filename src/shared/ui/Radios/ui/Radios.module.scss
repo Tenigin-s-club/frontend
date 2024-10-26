@@ -2,6 +2,16 @@
   display: none;
 }
 
+.radios {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  &Horizontal {
+    gap: 30px;
+    flex-direction: row;
+  }
+}
+
 .radiosSvg {
   position: absolute;
   opacity: 0;
