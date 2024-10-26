@@ -35,7 +35,7 @@ const Header = () => {
           className={({ isActive }) =>
             isActive ? style.activeLink : style.link
           }
-          to={"/card"}
+          to={"/cart"}
         >
           <CardIcon />
           Корзина

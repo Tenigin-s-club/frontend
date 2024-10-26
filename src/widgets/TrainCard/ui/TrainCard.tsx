@@ -48,14 +48,14 @@ const TrainCard = ({
       <div className={style.body}>
         <div className={style.timeLine}>
           <div className={style.path}>
-            <h4 className={style.accent}>{firstDate.date}</h4>
-            <h5>{firstDate.city}</h5>
-            <p>{firstDate.time}</p>
+            <h4 className={style.accent}>{firstDate.time}</h4>
+            <p>{firstDate.city}</p>
+            <span>{firstDate.date}</span>
           </div>
           <div className={style.path}>
-            <h4 className={style.accent}>{secondDate.date}</h4>
-            <h5>{secondDate.city}</h5>
-            <p>{secondDate.time}</p>
+            <h4 className={style.accent}>{secondDate.time}</h4>
+            <p>{secondDate.city}</p>
+            <span>{secondDate.date}</span>
           </div>
         </div>
         <div className={style.Purchased}>

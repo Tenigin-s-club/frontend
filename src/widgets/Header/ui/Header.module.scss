@@ -7,11 +7,13 @@
   justify-content: space-between;
   background-color: $blockBackground;
   padding: 1rem;
+
   a {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     font-size: 1.2rem;
+    padding: 0.6rem;
   }
   .links {
     width: 50%;
@@ -23,7 +25,6 @@
     color: $accentColor1;
     background-color: $currentColor;
     border-radius: $smallBorder;
-    padding: 0.5rem;
 
     color: $accentColor1;
   }

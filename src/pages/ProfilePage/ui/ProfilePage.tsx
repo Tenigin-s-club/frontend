@@ -1,5 +1,4 @@
 import { ProfileCard } from "@/entities/User";
-import Header from "@/widgets/Header";
 import classNames from "classnames";
 import style from "./ProfilePage.module.scss";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +8,6 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   return (
     <div className={classNames("section", style.ProfilePage)}>
-      <Header title="Профиль" />
       <div className={style.ProfileBody}>
         <Button variant="primary" onClick={() => navigate(-1)}>
           <ArrowLeftIcon />
