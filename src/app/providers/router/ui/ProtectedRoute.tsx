@@ -1,3 +1,4 @@
+import Loader from "@/shared/ui/Loader";
 import { FC, PropsWithChildren, useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 
@@ -12,20 +13,7 @@ export const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
     return () => clearTimeout(timeout);
   }, []);
 
-  if (isLoading)
-    return (
-      <div
-        style={{
-          height: "100vh",
-          width: "100vw",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <h2>Загрузка...</h2>
-      </div>
-    );
+  if (isLoading) return <Loader />;
 
   return children;
 };
