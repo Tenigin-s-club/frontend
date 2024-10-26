@@ -37,7 +37,7 @@ const TrainParams = () => {
     })();
   }, []);
   const navigate = useNavigate();
-  if (areCitiesLoading) return <Loader />;
+  if (areCitiesLoading) return <>Загрузка...</>;
   return (
     <div className={style.wrapper}>
       <div className={style.mainForm}>

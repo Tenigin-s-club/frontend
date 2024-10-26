@@ -1,6 +1,5 @@
 import { urls } from "@/shared/constants/urls";
 import axios from "axios";
-import { Cookies } from "react-cookie";
 
 const axiosInstance = axios.create({
   baseURL: urls.api,
@@ -8,8 +7,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const cookie = new Cookies();
-    const token = cookie.get("access_token");
+    const token = localStorage.getItem("access_token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     } else {
