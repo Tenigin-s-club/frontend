@@ -1,0 +1,76 @@
+@import "@styles/index.scss";
+.Tiket {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 450px;
+  text-align: left;
+  .mainTiket {
+    width: 70%;
+    .header {
+      border-radius: $bigBorder $bigBorder 0 0;
+      background-color: $currentColor;
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .body {
+      padding: 1rem 2rem;
+      background-color: $blockBackground;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      border-radius: 0 0 $bigBorder $bigBorder;
+      .timeLine {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .path {
+          h4 {
+            font-size: 1.5rem;
+          }
+          span {
+            font-size: 0.7rem;
+          }
+        }
+      }
+    }
+    .shareButton {
+      background: transparent;
+      border: none;
+      padding: 0;
+      width: auto;
+    }
+    .footer {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      p {
+        font-size: 0.7rem;
+      }
+      .wagonInfo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+      }
+    }
+  }
+  .accent {
+    color: $accentColor1;
+  }
+  .qrBlock {
+    display: inline-block;
+    cursor: pointer;
+    max-height: 100%;
+    background-color: $blockBackground;
+    border-radius: $bigBorder;
+    padding: 1rem;
+    img {
+      height: 200px;
+    }
+  }
+}

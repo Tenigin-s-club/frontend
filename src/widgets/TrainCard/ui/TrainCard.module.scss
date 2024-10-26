@@ -1,6 +1,6 @@
-@import "@styles/global.scss";
+@import "@styles/index.scss";
 .TrainCard {
-  width: 30%;
+  width: 40%;
   min-width: 450px;
   text-align: left;
   .header {
@@ -30,6 +30,13 @@
           font-size: 0.7rem;
         }
       }
+    }
+  }
+  .Purchased {
+    display: flex;
+    gap: 1rem;
+    p {
+      font-size: 0.7rem;
     }
   }
   .accent {

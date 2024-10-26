@@ -7,8 +7,8 @@ import { ProtectedRoute } from "../../../app/providers/router/ui/ProtectedRoute"
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 import AuthLayout from "@/app/layouts/authLayout";
 import MainLayout from "@/app/layouts/mainLayout";
-import LikesPage from "@/pages/LikesPage/ui/LikesPage";
-import CartPage from "@/pages/CartPage/ui/CartPage";
+import { CartPage } from "@/pages/CartPage";
+import { LikesPage } from "@/pages/LikesPage";
 
 const authRoutes: RouteObject[] = [
   {

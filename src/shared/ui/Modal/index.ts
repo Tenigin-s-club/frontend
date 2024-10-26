@@ -1,3 +1,4 @@
-import Modal from './ui/Modal';
+import Modal, { ModalProps } from "./ui/Modal";
 
+export type { ModalProps };
 export default Modal;

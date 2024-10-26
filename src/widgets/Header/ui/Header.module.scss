@@ -1,4 +1,4 @@
-@import "@styles/global.scss";
+@import "@styles/index.scss";
 .Header {
   height: 4rem;
   width: 100%;
@@ -7,6 +7,16 @@
   justify-content: space-between;
   background-color: $blockBackground;
   padding: 1rem;
+
+  @include mobile {
+    position: fixed;
+    z-index: 100;
+
+    bottom: 0;
+    .logo {
+      display: none;
+    }
+  }
 
   a {
     display: flex;
@@ -20,6 +30,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @include tablet {
+      width: 65%;
+    }
+    @include mobile {
+      width: 100%;
+      p {
+        display: none;
+      }
+    }
   }
   .activeLink {
     color: $accentColor1;

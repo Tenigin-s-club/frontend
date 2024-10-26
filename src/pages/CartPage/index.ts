@@ -1,3 +1,3 @@
-import LikesPageAsync from "./ui/CartPage";
+import CartPageAsync from "./ui/CartPage";
 
-export { LikesPageAsync as LikesPagePage };
+export { CartPageAsync as CartPage };

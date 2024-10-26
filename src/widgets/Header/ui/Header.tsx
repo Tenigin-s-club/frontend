@@ -8,7 +8,7 @@ import HomeIcon from "@/shared/assets/home.svg";
 const Header = () => {
   return (
     <header className={style.Header}>
-      <Link to="/">
+      <Link to="/" className={style.logo}>
         <h3>ЛОГО</h3>
       </Link>
 
@@ -20,7 +20,7 @@ const Header = () => {
           to={"/"}
         >
           <HomeIcon />
-          Главная
+          <p>Главная</p>
         </NavLink>
         <NavLink
           className={({ isActive }) =>
@@ -29,7 +29,7 @@ const Header = () => {
           to={"/favorite"}
         >
           <LikeIcon />
-          Избранное
+          <p>Избранное</p>
         </NavLink>
         <NavLink
           className={({ isActive }) =>
@@ -38,7 +38,7 @@ const Header = () => {
           to={"/cart"}
         >
           <CardIcon />
-          Корзина
+          <p>Корзина</p>
         </NavLink>
         <NavLink
           className={({ isActive }) =>
@@ -47,7 +47,7 @@ const Header = () => {
           to={"/profile"}
         >
           <UserIcon />
-          Профиль
+          <p>Профиль</p>
         </NavLink>
       </div>
     </header>

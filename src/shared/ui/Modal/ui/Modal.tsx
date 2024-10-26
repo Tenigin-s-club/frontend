@@ -5,7 +5,7 @@ import style from "./Modal.module.scss";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
-interface ModalProps {
+export interface ModalProps {
   isOpened: boolean;
   children: ReactNode;
   onClose?: VoidFunction;
