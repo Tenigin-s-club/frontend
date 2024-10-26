@@ -4,8 +4,11 @@ import style from "./MainPage.module.scss";
 import classNames from "classnames";
 
 import TrainCard from "@/widgets/TrainCard/ui/TrainCard";
+import Dropdown from "@/shared/ui/Dropdown/ui/Dropdown";
+import { useState } from "react";
 
 const MainPage = () => {
+  const [str, setStr] = useState("");
   const navigate = useNavigate();
   return (
     <div className={style.MainPage}>
@@ -15,6 +18,11 @@ const MainPage = () => {
         secondDate={{ time: "12:10", city: "Moskowвав", date: "27 окт, вб" }}
         fitsFree={20}
         fitsPurchased={30}
+      />
+      <Dropdown
+        options={["Ростов", "Киев", "Москва", "Владимир", "Гуково"]}
+        selectedOption={str}
+        setSelectedOption={(n) => setStr(n)}
       />
       <div className="container">
         <div className={style.content}>
