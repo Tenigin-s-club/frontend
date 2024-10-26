@@ -1,13 +1,12 @@
-import Button from "@/shared/ui/Button";
-import { useNavigate } from "react-router-dom";
+import TrainParams from "@/features/TrainParams";
 import style from "./MainPage.module.scss";
-import Dropdown from "@/shared/ui/Dropdown/ui/Dropdown";
-import { useState } from "react";
-
+import classNames from "classnames";
 const MainPage = () => {
-  const [str, setStr] = useState("");
-  const navigate = useNavigate();
-  return <div className={style.MainPage}></div>;
+  return (
+    <div className={classNames(["container", style.MainPage])}>
+      <TrainParams />
+    </div>
+  );
 };
 
 export default MainPage;
