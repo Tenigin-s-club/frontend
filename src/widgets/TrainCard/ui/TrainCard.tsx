@@ -1,6 +1,9 @@
 import Button from "@/shared/ui/Button";
 import style from "./TrainCard.module.scss";
 import SharedIcon from "@/shared/assets/share.svg";
+import ShareModal from "@/widgets/ShareModal";
+import { useState } from "react";
+import { urls } from "@/shared/constants/urls";
 
 interface pathI {
   time: string;
@@ -23,13 +26,24 @@ const TrainCard = ({
   fitsFree,
   fitsPurchased,
 }: TrainCardProps) => {
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   return (
     <div className={style.TrainCard}>
+      <ShareModal
+        link={`${urls.app}${id}`}
+        isOpened={isShareModalOpen}
+        setIsOpened={() => setIsShareModalOpen((prev) => !prev)}
+      />
       <div className={style.header}>
         <p>
           Id поезда: <span className={style.accent}>{id}</span>
         </p>
-        <SharedIcon />
+        <button
+          className={style.shareButton}
+          onClick={() => setIsShareModalOpen(true)}
+        >
+          <SharedIcon />
+        </button>
       </div>
       <div className={style.body}>
         <div className={style.timeLine}>

@@ -1,8 +1,9 @@
+import { urls } from "@/shared/constants/urls";
 import axios from "axios";
 import { Cookies } from "react-cookie";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: urls.api,
   withCredentials: true,
 });
 

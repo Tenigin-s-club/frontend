@@ -1,4 +1,7 @@
-import { showSuccessNotification } from "@/shared/helpers/notification";
+import {
+  showErrorNotification,
+  showSuccessNotification,
+} from "@/shared/helpers/notification";
 import Modal from "@/shared/ui/Modal";
 import { FC } from "react";
 import QRCode from "react-qr-code";
@@ -24,13 +27,13 @@ const ShareModal: FC<ShareModalProps> = ({ isOpened, setIsOpened, link }) => {
             onClick={async () => {
               try {
                 await navigator.clipboard.writeText(link);
-                showSuccessNotification("Copied successfully!");
+                showSuccessNotification("Успешно скопировано!");
               } catch (err) {
-                console.error("Failed to copy: ", err);
+                showErrorNotification("Не удалось скопировать: " + err);
               }
             }}
           >
-            clip
+            Скопировать
           </Button>
         </div>
       </div>
