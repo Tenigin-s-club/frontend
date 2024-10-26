@@ -1,0 +1,51 @@
+@import "@styles/index.scss";
+.wagonCard {
+  width: fit-content;
+  background-color: $blockBackground;
+  padding: 1.5rem;
+  border-radius: $bigBorder;
+  h3 {
+    color: $accentColor1;
+    margin-bottom: 2rem;
+  }
+  .Coups {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    .titles {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+  }
+  .description {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    p {
+      font-size: 0.7rem;
+    }
+    div {
+      width: 1.6rem;
+      height: 1.6rem;
+      background-color: $blockBackground;
+      border-radius: $smallBorder;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .white {
+      border: solid 1px $paragraphColor;
+    }
+    .accent {
+      background-color: $accentColor1;
+    }
+    .black {
+      background-color: $paragraphColor;
+      color: $blockBackground;
+    }
+  }
+}

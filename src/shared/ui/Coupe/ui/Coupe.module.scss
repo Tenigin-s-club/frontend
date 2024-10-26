@@ -1,0 +1,28 @@
+@import "@styles/index.scss";
+.coupeCard {
+  .coupe {
+    width: 4.1rem;
+    height: 4.1rem;
+    background-color: $backgroundColor;
+    padding: 0.3rem;
+    border-radius: $smallBorder;
+    display: grid;
+    gap: 0.3rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .place {
+    cursor: pointer;
+    width: 1.6rem;
+    height: 1.6rem;
+    background-color: $blockBackground;
+    border-radius: $smallBorder;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .black {
+    cursor: default;
+    background-color: $paragraphColor;
+    color: $blockBackground;
+  }
+}

@@ -1,3 +1,12 @@
+export interface sitType {
+  num: number;
+  block: number;
+  price: number;
+  status: "FREE" | "BOOKED" | "CLOSED";
+}
+
+export type CoupeType = sitType[];
+
 export interface pathType {
   time: string;
   city: string;
