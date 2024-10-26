@@ -1,3 +1,4 @@
+import CrossIcon from "@/shared/assets/cross.svg";
 import style from "./TrainParams.module.scss";
 // import { useNavigate } from "react-router-dom";
 // import { useForm } from "react-hook-form";
@@ -7,10 +8,11 @@ import { useEffect, useState } from "react";
 import { getCities } from "../model/services/TrainParams/TrainParams";
 import { showErrorNotification } from "@/shared/helpers/notification";
 import "react-calendar/dist/Calendar.css";
-
 import ReverseIcon from "@/shared/assets/reverse.svg";
 import Calendar from "@/shared/ui/Calendar";
 import Button from "@/shared/ui/Button";
+import Input from "@/shared/ui/Input";
+import { Radios } from "@/shared/ui/Radios/ui/Radios";
 // type Inputs = {
 //   fullname: string;
 //   email: string;
@@ -28,6 +30,13 @@ const countOfPassangers = [
   "4 пассажира",
 ];
 
+const typeOfWagon = {
+  Купе: "COUPE",
+  Платцкарт: "PLATZCART",
+};
+
+const typeOfShelf = ["Верхняя", "Нижняя"];
+
 const TrainParams = () => {
   // const {
   //   register,
@@ -39,6 +48,10 @@ const TrainParams = () => {
   const [cities, setCities] = useState([]);
   const [value, onChange] = useState<Value>(new Date());
   const [count, setCount] = useState<string>(countOfPassangers[0]);
+  const [areAdvancedOpen, setAreAdvancedOpen] = useState(false);
+  const [trainId, setTrainId] = useState<number | undefined>();
+  const [trainType, setTrainType] = useState<string | undefined>();
+  const [activeTypeOfShelf, setActiveTypeOfShelf] = useState<number>(0);
 
   const [areCitiesLoading, setAreCitiesLoading] = useState(false);
   useEffect(() => {
@@ -102,7 +115,44 @@ const TrainParams = () => {
           />
         </label>
       </div>
-      <Button className={style.SubmitButton}>Найти билеты</Button>
+      <h3 onClick={() => setAreAdvancedOpen((prev) => !prev)}>
+        Доп. параметры <CrossIcon />
+      </h3>
+      <div>
+        <label className={style.label}>
+          <span>ID поезда:</span>
+          <Input
+            value={trainId}
+            onChange={(v) => setTrainId(Number(v.target.value))}
+            type="number"
+          />
+        </label>
+        <label className={style.label}>
+          <span>Тип вагона:</span>
+          <Dropdown
+            options={Object.keys(typeOfWagon)}
+            selectedOption={trainType || ""}
+            setSelectedOption={(n) => setTrainType(n)}
+          />
+        </label>
+        <label className={style.label}>
+          <span>Тип полки:</span>
+          <Radios
+            items={typeOfShelf.map((type, index) => ({
+              label: type,
+              id: index,
+            }))}
+            activeId={activeTypeOfShelf}
+            setActiveId={(n) => setActiveTypeOfShelf(n)}
+          />
+        </label>
+      </div>
+      <Button
+        onClick={() => console.log(activeTypeOfShelf)}
+        className={style.SubmitButton}
+      >
+        Найти билеты
+      </Button>
     </div>
   );
 };
