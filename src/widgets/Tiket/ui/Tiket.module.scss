@@ -1,11 +1,11 @@
 @import "@styles/index.scss";
 .Tiket {
-  width: 55%;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: left;
-  min-width: 650px;
+  min-width: 700px;
   @include mobile {
     width: 95%;
     min-width: 200px;
@@ -15,19 +15,37 @@
     .header {
       border-radius: $bigBorder $bigBorder 0 0;
       background-color: $currentColor;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 1.2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      .buttons {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
     }
     .body {
       padding: 1rem;
       background-color: $blockBackground;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+
       border-radius: 0 0 $bigBorder $bigBorder;
+      .stopsBlock {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .stops {
+        font-size: 0.7rem;
+      }
+      .accent {
+        color: $accentColor1;
+      }
+
       .timeLine {
+        margin-top: 1rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -56,6 +74,7 @@
     }
     .footer {
       width: 100%;
+      margin-top: 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -93,7 +112,7 @@
     border-radius: $bigBorder;
     padding: 1rem;
     img {
-      height: 200px;
+      height: 220px;
     }
   }
 }

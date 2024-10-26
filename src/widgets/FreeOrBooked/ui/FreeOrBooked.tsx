@@ -15,6 +15,7 @@ const FreeOrBooked = () => {
             secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
             fitsFree: 34,
             fitsPurchased: 2,
+            stops: "Москва Волгоград Ростов-на-Дону Краснодак",
           },
           {
             id: "21345",
@@ -22,6 +23,7 @@ const FreeOrBooked = () => {
             secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
             fitsFree: 34,
             fitsPurchased: 2,
+            stops: "Москва Волгоград Ростов-на-Дону Краснодак",
           },
         ])
       : setTrainArray([
@@ -32,6 +34,7 @@ const FreeOrBooked = () => {
             fitsFree: 34,
             fitsPurchased: 2,
             booked: true,
+            stops: "Москва Волгоград Ростов-на-Дону Краснодак",
           },
           {
             id: "21345",
@@ -40,6 +43,7 @@ const FreeOrBooked = () => {
             fitsFree: 34,
             fitsPurchased: 2,
             booked: true,
+            stops: "Москва Волгоград Ростов-на-Дону Краснодак",
           },
           {
             id: "21345",
@@ -48,6 +52,7 @@ const FreeOrBooked = () => {
             fitsFree: 34,
             fitsPurchased: 2,
             booked: true,
+            stops: "Москва Волгоград Ростов-на-Дону Краснодак",
           },
         ]);
   }, [isFree]);

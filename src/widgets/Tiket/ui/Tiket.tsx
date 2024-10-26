@@ -7,6 +7,15 @@ import QrImage from "@/shared/assets/QrCode.png";
 import QRModal from "@/widgets/QRModal";
 import TwoTrainsIcon from "@/shared/assets/twoTrain.svg";
 import { TiketType } from "@/features/TicketsOperations/model/TicketsOperations.types";
+import { FavoriteButton } from "@/features/TicketsOperations";
+import classNames from "classnames";
+import NextArrowIcon from "@/shared/assets/nextArrow.svg";
+
+interface TiketTypeProps extends TiketType {
+  hasFavorite?: boolean;
+  hasPrice?: boolean;
+  hasTimeLine?: boolean;
+}
 
 const Tiket = ({
   id,
@@ -17,9 +26,14 @@ const Tiket = ({
   wagon,
   seat,
   travelTime,
-}: TiketType) => {
+  stops,
+  hasFavorite,
+  hasPrice,
+  hasTimeLine = true,
+}: TiketTypeProps) => {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isQRModalOpen, setIsQRModalOpen] = useState(false);
+  const stopsArr = stops?.split(" ");
   return (
     <div className={style.Tiket}>
       <div className={style.mainTiket}>
@@ -32,31 +46,48 @@ const Tiket = ({
           <p>
             Id поезда: <span className={style.accent}>{id}</span>
           </p>
-          <button
-            className={style.shareButton}
-            onClick={() => setIsShareModalOpen(true)}
-          >
-            <SharedIcon />
-          </button>
+          <div className={style.buttons}>
+            {hasFavorite && <FavoriteButton isActive={false} />}
+            <button
+              className={style.shareButton}
+              onClick={() => setIsShareModalOpen(true)}
+            >
+              <SharedIcon />
+            </button>
+          </div>
         </div>
         <div className={style.body}>
-          <div className={style.timeLine}>
-            <div className={style.path}>
-              <h4 className={style.accent}>{firstDate.time}</h4>
-              <p>{firstDate.city}</p>
-              <span>{firstDate.date}</span>
-            </div>
-            <div className={style.twoTrains}>
-              <p>В пути: {travelTime}</p>
-              <TwoTrainsIcon />
-            </div>
-
-            <div className={style.path}>
-              <h4 className={style.accent}>{secondDate.time}</h4>
-              <p>{secondDate.city}</p>
-              <span>{secondDate.date}</span>
-            </div>
+          <div className={style.stopsBlock}>
+            {stopsArr.map((item, id) => (
+              <p
+                key={item}
+                className={classNames(style.stops, {
+                  [style.accent]: id === 0 || id === stopsArr.length - 1,
+                })}
+              >
+                {item} {id !== stopsArr.length - 1 && <NextArrowIcon />}
+              </p>
+            ))}
           </div>
+          {hasTimeLine && (
+            <div className={style.timeLine}>
+              <div className={style.path}>
+                <h4 className={style.accent}>{firstDate.time}</h4>
+                <p>{firstDate.city}</p>
+                <span>{firstDate.date}</span>
+              </div>
+              <div className={style.twoTrains}>
+                <p>В пути: {travelTime}</p>
+                <TwoTrainsIcon />
+              </div>
+
+              <div className={style.path}>
+                <h4 className={style.accent}>{secondDate.time}</h4>
+                <p>{secondDate.city}</p>
+                <span>{secondDate.date}</span>
+              </div>
+            </div>
+          )}
           <div className={style.footer}>
             <div className={style.Purchased}>
               <p>
@@ -74,6 +105,13 @@ const Tiket = ({
                 Место: <br /> <span className={style.accent}>{seat}</span>
               </p>
             </div>
+            {hasPrice && (
+              <div className={style.price}>
+                <p>
+                  <span className={style.accent}>XXX</span>руб.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>

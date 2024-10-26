@@ -12,6 +12,7 @@ export interface TiketType {
   wagon: number;
   seat: number;
   travelTime: string;
+  stops: string;
 }
 
 export interface TrainCardType {
@@ -21,4 +22,7 @@ export interface TrainCardType {
   fitsFree: number;
   fitsPurchased: number;
   booked?: boolean;
+  stops: string;
 }
+
+export type getOrdersType = () => Promise<false | TiketType[]>;

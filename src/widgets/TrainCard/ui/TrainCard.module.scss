@@ -23,6 +23,17 @@
     flex-direction: column;
     gap: 2rem;
     border-radius: 0 0 $bigBorder $bigBorder;
+    .stopsBlock {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .stops {
+      font-size: 0.7rem;
+    }
+    .accent {
+      color: $accentColor1;
+    }
     .timeLine {
       display: flex;
       align-items: center;

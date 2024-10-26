@@ -6,6 +6,8 @@ import { useState } from "react";
 import { urls } from "@/shared/constants/urls";
 import TwoTrainsIcon from "@/shared/assets/twoTrain.svg";
 import { TrainCardType } from "@/features/TicketsOperations/model/TicketsOperations.types";
+import classNames from "classnames";
+import NextArrowIcon from "@/shared/assets/nextArrow.svg";
 
 const TrainCard = ({
   id,
@@ -14,8 +16,10 @@ const TrainCard = ({
   fitsFree,
   fitsPurchased,
   booked,
+  stops,
 }: TrainCardType) => {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const stopsArr = stops?.split(" ");
   return (
     <div className={style.TrainCard}>
       <ShareModal
@@ -27,6 +31,7 @@ const TrainCard = ({
         <p>
           Id поезда: <span className={style.accent}>{id}</span>
         </p>
+
         <button
           className={style.shareButton}
           onClick={() => setIsShareModalOpen(true)}
@@ -35,6 +40,18 @@ const TrainCard = ({
         </button>
       </div>
       <div className={style.body}>
+        <div className={style.stopsBlock}>
+          {stopsArr.map((item, id) => (
+            <p
+              key={item}
+              className={classNames(style.stops, {
+                [style.accent]: id === 0 || id === stopsArr.length - 1,
+              })}
+            >
+              {item} {id !== stopsArr.length - 1 && <NextArrowIcon />}
+            </p>
+          ))}
+        </div>
         <div className={style.timeLine}>
           <div className={style.path}>
             <h4 className={style.accent}>{firstDate.time}</h4>
@@ -48,6 +65,7 @@ const TrainCard = ({
             <span>{secondDate.date}</span>
           </div>
         </div>
+
         <div className={style.Purchased}>
           <p>
             Подходит свободных:{" "}
