@@ -1,7 +1,6 @@
 import Button from "@/shared/ui/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import style from "./MainPage.module.scss";
-import classNames from "classnames";
 
 import TrainCard from "@/widgets/TrainCard/ui/TrainCard";
 import Dropdown from "@/shared/ui/Dropdown/ui/Dropdown";

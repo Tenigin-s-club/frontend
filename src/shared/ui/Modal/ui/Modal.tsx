@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode } from "react";
 
 import style from "./Modal.module.scss";
 import { createPortal } from "react-dom";

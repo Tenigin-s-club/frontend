@@ -1,20 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-
 import { SubmitHandler, useForm } from "react-hook-form";
-
 import style from "./RegisterForm.module.scss";
-
 import Button from "@/shared/ui/Button/index";
 import Input from "@/shared/ui/Input/index";
-import LikeHandIcon from "@/shared/assets/LikeHand.svg";
 import UserIcon from "@/shared/assets/user.svg";
 import DogIcon from "@/shared/assets/Dog.svg";
 import LockIcon from "@/shared/assets/Lock.svg";
-import AppleIcon from "@/shared/assets/Apple.svg";
-import GoogleIcon from "@/shared/assets/Google.svg";
-import TelegramIcon from "@/shared/assets/Telegram.svg";
 import { registerFetch } from "../../model/services/AuthByEmail/AuthByEmail";
-import { showErrorNotification } from "@/shared/helpers/notification";
 
 type Inputs = {
   fullname: string;

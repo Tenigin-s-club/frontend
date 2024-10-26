@@ -4,7 +4,7 @@ import { AxiosError } from "axios";
 
 export const loginFetch = async (email: string, password: string) => {
   try {
-    const response = await axiosInstance.post(
+    await axiosInstance.post(
       "/users/login",
       {
         email,
@@ -25,7 +25,7 @@ export const registerFetch = async (
   password: string
 ) => {
   try {
-    const response = await axiosInstance.post(
+    await axiosInstance.post(
       "/users/register",
       {
         fullname,
@@ -46,7 +46,7 @@ export const registerFetch = async (
 };
 export const logout = async () => {
   try {
-    const response = await axiosInstance.get("/users/logout");
+    await axiosInstance.get("/users/logout");
     return true;
   } catch (e) {
     console.log(e);
