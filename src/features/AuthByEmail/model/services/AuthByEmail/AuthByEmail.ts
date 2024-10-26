@@ -1,18 +1,21 @@
-import axiosInstance from "@/shared/config/ApiConfig/ApiConfig";
+import { urls } from "@/shared/constants/urls";
 import { showErrorNotification } from "@/shared/helpers/notification";
-import { AxiosError } from "axios";
-
+import axios, { AxiosError } from "axios";
+const axiosInstance = axios.create({
+  baseURL: urls.api,
+});
 export const loginFetch = async (email: string, password: string) => {
   try {
-    await axiosInstance.post(
-      "/users/login",
+    const res = await axiosInstance.post(
+      "/auth/login",
       {
         email,
         password,
       },
       { headers: { "Content-Type": "application/json" } }
     );
-    return true;
+    localStorage.setItem("access_token", res.data["token"]);
+    return res.data["token"];
   } catch (e) {
     const error = e as AxiosError;
     showErrorNotification(error.message);
@@ -20,24 +23,25 @@ export const loginFetch = async (email: string, password: string) => {
   }
 };
 export const registerFetch = async (
-  fullname: string,
+  fio: string,
   email: string,
   password: string
 ) => {
   try {
-    await axiosInstance.post(
-      "/users/register",
+    const res = await axiosInstance.post(
+      "/auth/register",
       {
-        fullname,
+        fio,
         email,
         password,
+        team: Math.floor(Math.random() * 100_000_000) + "",
       },
       {
         headers: { "Content-Type": "application/json" },
       }
     );
-
-    return true;
+    localStorage.setItem("access_token", res.data["token"]);
+    return res.data["token"];
   } catch (e) {
     const error = e as AxiosError;
     showErrorNotification(error.message);
@@ -46,7 +50,7 @@ export const registerFetch = async (
 };
 export const logout = async () => {
   try {
-    await axiosInstance.get("/users/logout");
+    localStorage.removeItem("access_token");
     return true;
   } catch (e) {
     console.log(e);

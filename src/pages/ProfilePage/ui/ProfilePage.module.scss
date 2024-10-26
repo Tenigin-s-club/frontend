@@ -2,19 +2,18 @@
 .ProfileBody {
   height: 80vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: start;
+  max-width: 800px;
+  margin: 0 auto;
   gap: 25px;
-  margin-right: 10%;
-  .BackBlock {
-    background-color: $blockBackground;
-    padding: 1rem;
-    border: $blocksBorder;
-    border-radius: 15px;
-    box-shadow: $blocksShadow;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    cursor: pointer;
+}
+
+.ExitButton {
+  border-radius: 0;
+  width: 100%;
+  & > p {
+    color: $accentColor2;
   }
 }

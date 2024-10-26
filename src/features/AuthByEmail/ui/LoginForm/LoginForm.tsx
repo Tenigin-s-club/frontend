@@ -25,7 +25,7 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     let res = await loginFetch(data.email, data.password);
-    if (res) navigate("/mytests");
+    if (res) navigate("/");
   };
 
   return (

@@ -5,7 +5,7 @@ import style from "./Button.module.scss";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  variant?: "primary" | "text";
+  variant?: "primary" | "text" | "danger";
 }
 
 const Button = ({
@@ -21,6 +21,7 @@ const Button = ({
         [style.normal]: !variant,
         [style.primary]: variant === "primary",
         [style.text]: variant === "text",
+        [style.danger]: variant === "danger",
       })}
       {...props}
     >

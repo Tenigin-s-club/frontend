@@ -1,14 +1,13 @@
+import { FC } from "react";
 import style from "./ProfileCard.module.scss";
 import Button from "@/shared/ui/Button";
-import useUserStore from "../model/slice/UserSlice";
-import Modal from "@/shared/ui/Modal";
-import { useState } from "react";
-import LogoutForm from "@/features/AuthByEmail/ui/LogoutForm";
 
-import Input from "@/shared/ui/Input";
-const ProfileCard = () => {
-  const [openModal, setOpenModal] = useState(false);
+interface ProfileCardProps {
+  name: string;
+  email: string;
+}
 
+const ProfileCard: FC<ProfileCardProps> = ({ name, email }) => {
   return (
     <div className={style.ProfileCard}>
       <div className={style.Header}>
@@ -20,22 +19,14 @@ const ProfileCard = () => {
 
       <div className={style.InputsBlock}>
         <div className={style.InputBlock}>
-          <label>Имя:</label>
-          {/* <Input placeholder={user.firstName} /> */}
+          <label>ФИО: </label>
+          <h3>{name}</h3>
         </div>
         <div className={style.InputBlock}>
-          <label>Фамилия:</label>
-          {/* <Input placeholder={user.lastName} /> */}
+          <label>Email:</label>
+          <h3>{email}</h3>
         </div>
       </div>
-
-      <div className={style.Buttons}>
-        <Button>Сохранить</Button>
-        <Button>Отмена</Button>
-      </div>
-      <Modal isOpened={openModal} onClose={() => setOpenModal(false)}>
-        <LogoutForm />
-      </Modal>
     </div>
   );
 };

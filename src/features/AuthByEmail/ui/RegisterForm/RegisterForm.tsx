@@ -24,7 +24,7 @@ const RegisterForm = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     let res = await registerFetch(data.fullname, data.email, data.password);
-    if (res) navigate("/mytests");
+    if (res) navigate("/");
   };
 
   return (
