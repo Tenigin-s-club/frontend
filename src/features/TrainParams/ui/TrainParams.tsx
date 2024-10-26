@@ -2,6 +2,7 @@ import style from "./TrainParams.module.scss";
 // import { useNavigate } from "react-router-dom";
 // import { useForm } from "react-hook-form";
 import Dropdown from "@/shared/ui/Dropdown";
+import TextDropdown from "@/shared/ui/TextDropdown";
 import { useEffect, useState } from "react";
 import { getCities } from "../model/services/TrainParams/TrainParams";
 import { showErrorNotification } from "@/shared/helpers/notification";
@@ -9,6 +10,7 @@ import "react-calendar/dist/Calendar.css";
 
 import ReverseIcon from "@/shared/assets/reverse.svg";
 import Calendar from "@/shared/ui/Calendar";
+import Button from "@/shared/ui/Button";
 // type Inputs = {
 //   fullname: string;
 //   email: string;
@@ -18,6 +20,13 @@ import Calendar from "@/shared/ui/Calendar";
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
+
+const countOfPassangers = [
+  "1 пассажир",
+  "2 пассажира",
+  "3 пассажира",
+  "4 пассажира",
+];
 
 const TrainParams = () => {
   // const {
@@ -29,6 +38,7 @@ const TrainParams = () => {
   const [arivingCity, setArivingCity] = useState("");
   const [cities, setCities] = useState([]);
   const [value, onChange] = useState<Value>(new Date());
+  const [count, setCount] = useState<string>(countOfPassangers[0]);
 
   const [areCitiesLoading, setAreCitiesLoading] = useState(false);
   useEffect(() => {
@@ -51,7 +61,7 @@ const TrainParams = () => {
       <div className={style.mainForm}>
         <label className={style.label}>
           <span>Откуда</span>
-          <Dropdown
+          <TextDropdown
             placeholder="Введите город..."
             options={cities}
             selectedOption={depatureCity}
@@ -72,7 +82,7 @@ const TrainParams = () => {
         </button>
         <label className={style.label}>
           <span>Куда</span>
-          <Dropdown
+          <TextDropdown
             placeholder="Введите город..."
             options={cities}
             selectedOption={arivingCity}
@@ -81,10 +91,18 @@ const TrainParams = () => {
         </label>
         <label className={style.label}>
           <span>Когда</span>
-
           <Calendar onChange={(v) => onChange(v)} value={value} />
         </label>
+        <label className={style.label}>
+          <span>Количество пассажиров</span>
+          <Dropdown
+            options={countOfPassangers}
+            selectedOption={count}
+            setSelectedOption={setCount}
+          />
+        </label>
       </div>
+      <Button className={style.SubmitButton}>Найти билеты</Button>
     </div>
   );
 };

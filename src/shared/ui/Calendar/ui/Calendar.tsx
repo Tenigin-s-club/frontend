@@ -23,7 +23,10 @@ export const Calendar: FC<CalendarProps> = (props) => {
     };
   }, []);
   return (
-    <div ref={calendarRef}>
+    <div
+      ref={calendarRef}
+      style={{ position: "relative", maxWidth: 400, width: "100%" }}
+    >
       <Input
         onChange={() => {}}
         className={style.input}

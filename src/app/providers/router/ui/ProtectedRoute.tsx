@@ -6,9 +6,10 @@ import { FC, PropsWithChildren, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
+    setIsLoading(true);
     const token = localStorage.getItem("access_token");
     const access_token = token ? token : "";
     if (!access_token) {
@@ -18,7 +19,6 @@ export const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
       return;
     }
     (async () => {
-      setIsLoading(true);
       try {
         await getUser();
       } catch (e) {
@@ -26,9 +26,9 @@ export const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
         localStorage.removeItem("access_token");
         navigate("/login");
       } finally {
-        setIsLoading(false);
       }
     })();
+    setIsLoading(false);
   }, []);
 
   if (isLoading) return <Loader />;

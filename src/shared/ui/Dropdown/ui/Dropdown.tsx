@@ -1,54 +1,38 @@
-import { useEffect, useState, useRef, ChangeEvent } from "react";
+import { useEffect, useState, useRef } from "react";
 import Input from "../../Input";
 import style from "./Dropdown.module.scss";
-import { useDebounce } from "@/shared/hooks/useDebounce";
-import { EmptyDropdown } from "./EmptyDropdown";
-import MapMarker from "@/shared/assets/MapMarker.svg";
+import classNames from "classnames";
 
 interface DropdownProps<T> {
-  options: T[];
+  options: string[];
   selectedOption: T;
   setSelectedOption: (n: T) => void;
-  placeholder?: string;
 }
 
 const Dropdown = ({
   options = [],
   selectedOption,
   setSelectedOption,
-  placeholder,
 }: DropdownProps<string>) => {
-  const [inputValue, setInputValue] = useState(selectedOption);
   const [isOpen, setIsOpen] = useState(false);
-  const value = useDebounce(inputValue, 300);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const dropdownRef = useRef<HTMLUListElement>(null);
-
-  useEffect(() => {
-    setSelectedOption(value);
-  }, [value]);
-
-  useEffect(() => {
-    if (value !== selectedOption) {
-      setInputValue(selectedOption);
-    }
-  }, [selectedOption]);
-
-  const handleOptionClick = (option: string) => {
-    setInputValue(option);
-    setSelectedOption(option);
-    setIsOpen(false);
-  };
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleClickOutside = (e: MouseEvent) => {
     if (
       dropdownRef.current &&
-      !dropdownRef.current.contains(e.target as Node) &&
-      inputRef.current &&
-      !inputRef.current.contains(e.target as Node)
+      !dropdownRef.current.contains(e.target as Node)
     ) {
       setIsOpen(false);
     }
+  };
+
+  const handleClick = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const handleOptionClick = (option: string) => {
+    setSelectedOption(option);
+    handleClick();
   };
 
   useEffect(() => {
@@ -58,40 +42,49 @@ const Dropdown = ({
     };
   }, []);
 
-  const handleClick = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    setIsOpen(true);
-  };
-
   return (
-    <div style={{ position: "relative", maxWidth: 400 }}>
-      <Input
-        className={style.input}
-        placeholder={placeholder}
-        ref={inputRef}
-        value={inputValue}
-        onChange={handleClick}
-      />
+    <div
+      ref={dropdownRef}
+      style={{ position: "relative", maxWidth: 400, width: "100%" }}
+    >
+      <span className={style.DropdownClickZone}>
+        <Input
+          onClick={handleClick}
+          value={selectedOption}
+          className={style.input}
+          readOnly
+        />
+        <span
+          className={classNames([
+            style.DropdownArrow,
+            isOpen && style.DropdownArrowOpen,
+          ])}
+        >
+          <svg
+            width="45"
+            height="25"
+            viewBox="0 0 45 25"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M41.7857 3.125L22.5 21.875L3.21427 3.125"
+              stroke="#7E8C9A"
+            />
+          </svg>
+        </span>
+      </span>
       {isOpen && (
-        <ul className={style.Dropdown} ref={dropdownRef}>
-          {!!options.filter((el) =>
-            el.toLowerCase().includes(value.toLowerCase())
-          ).length &&
-            options
-              .filter((el) => el.toLowerCase().includes(value.toLowerCase()))
-              .map((option, index) => (
-                <li
-                  key={index}
-                  onClick={() => handleOptionClick(option)}
-                  className={style.DropdownItem}
-                >
-                  <MapMarker />
-                  <span>{option}</span>
-                </li>
-              ))}
-          {!options.filter((el) =>
-            el.toLowerCase().includes(value.toLowerCase())
-          ).length && <EmptyDropdown />}
+        <ul className={style.Dropdown}>
+          {options.map((option, index) => (
+            <li
+              key={index}
+              onClick={() => handleOptionClick(option)}
+              className={style.DropdownItem}
+            >
+              <span>{option}</span>
+            </li>
+          ))}
         </ul>
       )}
     </div>
