@@ -1,0 +1,33 @@
+@import "@styles/global.scss";
+.TrainCard {
+  width: 30%;
+  min-width: 450px;
+  text-align: left;
+  .header {
+    border-radius: $bigBorder $bigBorder 0 0;
+    background-color: $currentColor;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .body {
+    padding: 1rem 2rem;
+    background-color: $blockBackground;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    .timeLine {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .accent {
+    color: $accentColor1;
+  }
+  button {
+    width: 100%;
+    border-radius: 0 0 $bigBorder $bigBorder;
+  }
+}

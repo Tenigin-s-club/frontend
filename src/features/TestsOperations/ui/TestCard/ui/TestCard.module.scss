@@ -36,7 +36,7 @@
       // transition: 0.5s;
 
       &:hover:not(:focus) {
-        background-color: $blockBackground2;
+        background-color: $blockBackground;
       }
 
       &:after {
@@ -46,7 +46,7 @@
         left: 50%;
         width: 5px;
         height: 5px;
-        background: $blockBackground1;
+        background: $blockBackground;
         opacity: 0;
         border-radius: 100%;
         transform: scale(1, 1) translate(-50%);
