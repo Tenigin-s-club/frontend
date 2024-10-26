@@ -5,7 +5,7 @@ import style from "./Button.module.scss";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  variant?: "primary" | "text" | "";
+  variant?: "primary" | "text" | "danger" | "";
 }
 
 const Button = ({

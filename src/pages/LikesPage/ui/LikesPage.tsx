@@ -10,6 +10,7 @@ const LikesPage = () => {
       typeShelf="верхняя"
       wagon={14}
       seat={5}
+      travelTime={""}
     />
   );
 };

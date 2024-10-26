@@ -1,6 +1,6 @@
 import style from "./TrainParams.module.scss";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+// import { useNavigate } from "react-router-dom";
+// import { useForm } from "react-hook-form";
 import Dropdown from "@/shared/ui/Dropdown";
 import { useEffect, useState } from "react";
 import { getCities } from "../model/services/TrainParams/TrainParams";
@@ -9,22 +9,22 @@ import "react-calendar/dist/Calendar.css";
 
 import ReverseIcon from "@/shared/assets/reverse.svg";
 import Calendar from "@/shared/ui/Calendar";
-type Inputs = {
-  fullname: string;
-  email: string;
-  password: string;
-};
+// type Inputs = {
+//   fullname: string;
+//   email: string;
+//   password: string;
+// };
 
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const TrainParams = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Inputs>();
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm<Inputs>();
   const [depatureCity, setDepatureCity] = useState("");
   const [arivingCity, setArivingCity] = useState("");
   const [cities, setCities] = useState([]);
@@ -44,7 +44,7 @@ const TrainParams = () => {
       }
     })();
   }, []);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   if (areCitiesLoading) return <>Загрузка...</>;
   return (
     <div className={style.wrapper}>
