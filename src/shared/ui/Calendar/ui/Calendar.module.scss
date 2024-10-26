@@ -1,0 +1,14 @@
+.Calendar {
+  position: absolute;
+  display: none;
+}
+
+.shown {
+  display: block;
+}
+
+.input {
+  &::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+}

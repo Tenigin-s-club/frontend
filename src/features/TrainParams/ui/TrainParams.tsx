@@ -5,13 +5,19 @@ import Dropdown from "@/shared/ui/Dropdown";
 import { useEffect, useState } from "react";
 import { getCities } from "../model/services/TrainParams/TrainParams";
 import { showErrorNotification } from "@/shared/helpers/notification";
-import Loader from "@/shared/ui/Loader";
+import "react-calendar/dist/Calendar.css";
+
 import ReverseIcon from "@/shared/assets/reverse.svg";
+import Calendar from "@/shared/ui/Calendar";
 type Inputs = {
   fullname: string;
   email: string;
   password: string;
 };
+
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const TrainParams = () => {
   const {
@@ -22,6 +28,8 @@ const TrainParams = () => {
   const [depatureCity, setDepatureCity] = useState("");
   const [arivingCity, setArivingCity] = useState("");
   const [cities, setCities] = useState([]);
+  const [value, onChange] = useState<Value>(new Date());
+
   const [areCitiesLoading, setAreCitiesLoading] = useState(false);
   useEffect(() => {
     (async () => {
@@ -70,6 +78,11 @@ const TrainParams = () => {
             selectedOption={arivingCity}
             setSelectedOption={setArivingCity}
           />
+        </label>
+        <label className={style.label}>
+          <span>Когда</span>
+
+          <Calendar onChange={(v) => onChange(v)} value={value} />
         </label>
       </div>
     </div>
