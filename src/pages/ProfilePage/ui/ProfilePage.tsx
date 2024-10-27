@@ -32,19 +32,19 @@ const ProfilePage = () => {
       <div className={style.ProfileBody}>
         <h1>Профиль</h1>
         <h2>ФИО: {user?.fio || "Не указано"}</h2>
-        <h2>EMAIL: {user?.email || "Не указан"}</h2>
-      </div>
+        <h2>EMAIL: {user?.email || "Не указан"}</h2>{" "}
+        <Button
+          className={style.ExitButton}
+          variant="danger"
+          onClick={() => {
+            localStorage.removeItem("access_token");
+            navigate("/login");
+          }}
+        >
+          <p>Выйти</p>
+        </Button>
+      </div>{" "}
       <TicketsSlider />
-      <Button
-        className={style.ExitButton}
-        variant="danger"
-        onClick={() => {
-          localStorage.removeItem("access_token");
-          navigate("/login");
-        }}
-      >
-        <p>Выйти</p>
-      </Button>
     </div>
   );
 };
