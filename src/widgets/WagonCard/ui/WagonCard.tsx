@@ -23,13 +23,13 @@ const WagonCard = ({ wagon, coupes }: WagonCard) => {
 
       <div className={style.description}>
         <div className={style.accent}>1</div>
-        <p> - Ваше место</p>
+        <p>- Ваше место</p>
 
         <div className={style.black}>1</div>
-        <p> - Занято</p>
+        <p>- Занято</p>
 
         <div className={style.white}>1</div>
-        <p> - Свободно</p>
+        <p>- Свободно</p>
       </div>
     </div>
   );

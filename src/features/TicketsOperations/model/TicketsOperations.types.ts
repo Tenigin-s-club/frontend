@@ -14,14 +14,15 @@ export interface pathType {
 }
 export interface TiketType {
   id: string;
-  firstDate: pathType;
-  secondDate: pathType;
-  typeWagon: string;
-  typeShelf: string;
-  wagon: number;
-  seat: number;
-  travelTime: string;
-  stops: string;
+  departure_date: string;
+  arriving_date: string;
+  start_point: string;
+  finish_point: string;
+  type_wagon: string;
+  type_shelf: string;
+  number_wagon: number;
+  number_seat: number;
+  stops: string[];
 }
 
 export interface TrainCardType {

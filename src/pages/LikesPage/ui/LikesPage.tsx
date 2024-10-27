@@ -12,7 +12,7 @@ const LikesPage = () => {
         typeShelf="верхняя"
         wagon={14}
         seat={5}
-        stops={"Москва Волгоград Ростов-на-Дону Краснодак"}
+        stops={["Москва"]}
         travelTime={"3 часа 1 минуту"}
         hasFavorite
         hasPrice

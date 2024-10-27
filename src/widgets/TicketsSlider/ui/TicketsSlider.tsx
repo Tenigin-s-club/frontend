@@ -17,41 +17,41 @@ const TicketsSlider = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1300px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 750px)" });
   useEffect(() => {
-    setMyTicketsArray([
-      {
-        id: "234",
-        firstDate: { time: "13:20", city: "москва", date: "18:00" },
-        secondDate: { time: "17:20", city: "курск", date: "20:00" },
-        typeWagon: "купе",
-        typeShelf: "нижняя",
-        wagon: 23,
-        seat: 1,
-        travelTime: "15 часов 45 минуть",
-        stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-      },
-      {
-        id: "234",
-        firstDate: { time: "13:20", city: "москва", date: "18:00" },
-        secondDate: { time: "17:20", city: "курск", date: "20:00" },
-        typeWagon: "купе",
-        typeShelf: "нижняя",
-        wagon: 23,
-        seat: 1,
-        travelTime: "15 часов 45 минуть",
-        stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-      },
-      {
-        id: "234",
-        firstDate: { time: "13:20", city: "москва", date: "18:00" },
-        secondDate: { time: "17:20", city: "курск", date: "20:00" },
-        typeWagon: "купе",
-        typeShelf: "нижняя",
-        wagon: 23,
-        seat: 1,
-        travelTime: "15 часов 45 минуть",
-        stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-      },
-    ]);
+    // setMyTicketsArray([
+    //   {
+    //     id: "234",
+    //     firstDate: { time: "13:20", city: "москва", date: "18:00" },
+    //     secondDate: { time: "17:20", city: "курск", date: "20:00" },
+    //     typeWagon: "купе",
+    //     typeShelf: "нижняя",
+    //     wagon: 23,
+    //     seat: 1,
+    //     travelTime: "15 часов 45 минуть",
+    //     stops: "Москва Волгоград Ростов-на-Дону Краснодак",
+    //   },
+    //   {
+    //     id: "234",
+    //     firstDate: { time: "13:20", city: "москва", date: "18:00" },
+    //     secondDate: { time: "17:20", city: "курск", date: "20:00" },
+    //     typeWagon: "купе",
+    //     typeShelf: "нижняя",
+    //     wagon: 23,
+    //     seat: 1,
+    //     travelTime: "15 часов 45 минуть",
+    //     stops: "Москва Волгоград Ростов-на-Дону Краснодак",
+    //   },
+    //   {
+    //     id: "234",
+    //     firstDate: { time: "13:20", city: "москва", date: "18:00" },
+    //     secondDate: { time: "17:20", city: "курск", date: "20:00" },
+    //     typeWagon: "купе",
+    //     typeShelf: "нижняя",
+    //     wagon: 23,
+    //     seat: 1,
+    //     travelTime: "15 часов 45 минуть",
+    //     stops: "Москва Волгоград Ростов-на-Дону Краснодак",
+    //   },
+    // ]);
     // запрашиваем мои билеты
   }, []);
   return (

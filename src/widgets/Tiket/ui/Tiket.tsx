@@ -15,25 +15,27 @@ interface TiketTypeProps extends TiketType {
   hasFavorite?: boolean;
   hasPrice?: boolean;
   hasTimeLine?: boolean;
+  hasQr?: boolean;
 }
 
 const Tiket = ({
   id,
-  firstDate,
-  secondDate,
-  typeWagon,
-  typeShelf,
-  wagon,
-  seat,
-  travelTime,
+  departure_date,
+  arriving_date,
+  start_point,
+  finish_point,
+  type_wagon,
+  type_shelf,
+  number_wagon,
+  number_seat,
   stops,
   hasFavorite,
   hasPrice,
+  hasQr = false,
   hasTimeLine = true,
 }: TiketTypeProps) => {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isQRModalOpen, setIsQRModalOpen] = useState(false);
-  const stopsArr = stops?.split(" ");
   return (
     <div className={style.Tiket}>
       <div className={style.mainTiket}>
@@ -58,51 +60,53 @@ const Tiket = ({
         </div>
         <div className={style.body}>
           <div className={style.stopsBlock}>
-            {stopsArr.map((item, id) => (
+            {stops.map((item, id) => (
               <p
                 key={item}
                 className={classNames(style.stops, {
-                  [style.accent]: id === 0 || id === stopsArr.length - 1,
+                  [style.accent]: id === 0 || id === stops.length - 1,
                 })}
               >
-                {item} {id !== stopsArr.length - 1 && <NextArrowIcon />}
+                {item} {id !== stops.length - 1 && <NextArrowIcon />}
               </p>
             ))}
           </div>
           {hasTimeLine && (
             <div className={style.timeLine}>
               <div className={style.path}>
-                <h4 className={style.accent}>{firstDate.time}</h4>
-                <p>{firstDate.city}</p>
-                <span>{firstDate.date}</span>
+                <h4 className={style.accent}>{departure_date}</h4>
+                <p>{start_point}</p>
+                <span>{arriving_date}</span>
               </div>
               <div className={style.twoTrains}>
-                <p>В пути: {travelTime}</p>
+                {/* <p>В пути: {departure_date - arriving_date}</p> */}
                 <TwoTrainsIcon />
               </div>
 
               <div className={style.path}>
-                <h4 className={style.accent}>{secondDate.time}</h4>
-                <p>{secondDate.city}</p>
-                <span>{secondDate.date}</span>
+                <h4 className={style.accent}>{arriving_date}</h4>
+                <p>{finish_point}</p>
+                <span>{arriving_date}</span>
               </div>
             </div>
           )}
           <div className={style.footer}>
             <div className={style.Purchased}>
               <p>
-                Тип вагона: <span className={style.accent}>{typeWagon}</span>
+                Тип вагона: <span className={style.accent}>{type_wagon}</span>
               </p>
               <p>
-                Тип полки: <span className={style.accent}>{typeShelf}</span>
+                Тип полки: <span className={style.accent}>{type_shelf}</span>
               </p>
             </div>
             <div className={style.wagonInfo}>
               <p>
-                Вагон: <br /> <span className={style.accent}>{wagon}</span>
+                Вагон: <br />{" "}
+                <span className={style.accent}>{number_wagon}</span>
               </p>
               <p>
-                Место: <br /> <span className={style.accent}>{seat}</span>
+                Место: <br />{" "}
+                <span className={style.accent}>{number_seat}</span>
               </p>
             </div>
             {hasPrice && (
@@ -115,14 +119,18 @@ const Tiket = ({
           </div>
         </div>
       </div>
+      {hasQr && (
+        <>
+          <div className={style.qrBlock} onClick={() => setIsQRModalOpen(true)}>
+            <img src={QrImage} />
+          </div>
 
-      <div className={style.qrBlock} onClick={() => setIsQRModalOpen(true)}>
-        <img src={QrImage} />
-      </div>
-      <QRModal
-        isOpened={isQRModalOpen}
-        onClose={() => setIsQRModalOpen(false)}
-      />
+          <QRModal
+            isOpened={isQRModalOpen}
+            onClose={() => setIsQRModalOpen(false)}
+          />
+        </>
+      )}
     </div>
   );
 };
