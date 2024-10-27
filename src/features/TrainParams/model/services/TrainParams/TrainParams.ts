@@ -12,7 +12,7 @@ type TrainsParams = {
   wagon_type: ("PLATZCART" | "COUPE")[];
   // timeArrives: number | null;
   // timeDepatures: number | null;
-  fullness_type: ["LOW"];
+  fullnesss_type: ["LOW"];
   min_travel_time: number | null;
   max_travel_time: number | null;
   // countOfPeople: number | null;

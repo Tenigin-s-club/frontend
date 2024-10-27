@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import style from "./Filters.module.scss";
 import { useState } from "react";
 import Input from "@/shared/ui/Input";
@@ -27,7 +26,6 @@ const typeOfShelf = [
 ];
 
 const Filters = () => {
-  const [areAdvancedOpen, setAreAdvancedOpen] = useState(false);
   const [trainId, setTrainId] = useState<number | undefined>();
   const [trainType, setTrainType] = useState<string | undefined>();
   const [fromDepartureTime, setFromDepartureTime] = useState<Date | null>(null);

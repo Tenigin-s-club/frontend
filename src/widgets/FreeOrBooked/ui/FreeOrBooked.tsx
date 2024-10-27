@@ -5,63 +5,18 @@ import { TrainCardType } from "@/features/TicketsOperations/model/TicketsOperati
 import TrainCard from "@/widgets/TrainCard/ui/TrainCard";
 import useQueryParams from "@/entities/QueryParams/QueryParams";
 import { getTicketsWithParams } from "@/features/TicketsOperations/model/TicketsOperations";
+import Loader from "@/shared/ui/Loader";
 const FreeOrBooked = () => {
   const [isFree, setIsFree] = useState(true);
-  const [trainArray, setTrainArray] = useState<null | TrainCardType[]>(null);
-  const { queryParams } = useQueryParams();
-  // useEffect(() => {
-  //   isFree
-  //     ? setTrainArray([
-  //         {
-  //           id: "21345",
-  //           firstDate: { time: "14:34", city: "Москва", date: "14 окт" },
-  //           secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
-  //           fitsFree: 34,
-  //           fitsPurchased: 2,
-  //           stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-  //         },
-  //         {
-  //           id: "21345",
-  //           firstDate: { time: "14:34", city: "Москва", date: "14 окт" },
-  //           secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
-  //           fitsFree: 34,
-  //           fitsPurchased: 2,
-  //           stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-  //         },
-  //       ])
-  //     : setTrainArray([
-  //         {
-  //           id: "21345",
-  //           firstDate: { time: "14:34", city: "Москва", date: "14 окт" },
-  //           secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
-  //           fitsFree: 34,
-  //           fitsPurchased: 2,
-  //           booked: true,
-  //           stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-  //         },
-  //         {
-  //           id: "21345",
-  //           firstDate: { time: "14:34", city: "Москва", date: "14 окт" },
-  //           secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
-  //           fitsFree: 34,
-  //           fitsPurchased: 2,
-  //           booked: true,
-  //           stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-  //         },
-  //         {
-  //           id: "21345",
-  //           firstDate: { time: "14:34", city: "Москва", date: "14 окт" },
-  //           secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
-  //           fitsFree: 34,
-  //           fitsPurchased: 2,
-  //           booked: true,
-  //           stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-  //         },
-  //       ]);
-  // }, [isFree]);
+  const [trainArray, setTrainArray] = useState<TrainCardType[]>([]);
+  const { queryParams, isLoading } = useQueryParams();
   useEffect(() => {
-    console.log(queryParams);
-    getTicketsWithParams(queryParams);
+    if (queryParams) {
+      getTicketsWithParams(queryParams).then((res) => {
+        if (!res) return;
+        setTrainArray(res);
+      });
+    }
   }, [queryParams, isFree]);
   return (
     <div className={style.freeOrBooked}>
@@ -75,9 +30,11 @@ const FreeOrBooked = () => {
       </div>
       <h2>Подходящие вам:</h2>
       <div className={style.trainCards}>
-        {trainArray?.map((item) => (
-          <TrainCard key={item.id} {...item} />
-        ))}
+        {isLoading && <Loader />}
+        {/* {!trainArray.length && !isLoading && } */}
+        {!isLoading &&
+          !!trainArray.length &&
+          trainArray.map((item) => <TrainCard key={item.id} {...item} />)}
       </div>
     </div>
   );
