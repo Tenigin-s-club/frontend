@@ -37,11 +37,7 @@ const useQueryParams = create(
     start_point: "",
     end_point: "",
     departure_date: formatDate(new Date(), fullDateFormat),
-<<<<<<< HEAD
     wagon_type: ["PLATZCART"],
-=======
-    wagon_type: "PLATZCART",
->>>>>>> b62d226 (add WagonsPage)
     fullness_type: ["LOW"],
     min_travel_time: 0,
     max_travel_time: 0,
@@ -67,11 +63,7 @@ const useQueryParams = create(
         state.wagon_type = wagon_type;
       });
     },
-<<<<<<< HEAD
     setFullnessType: (fullness_type: string[]) => {
-=======
-    setFullnesType: (fullness_type: string) => {
->>>>>>> b62d226 (add WagonsPage)
       set((state) => {
         state.fullness_type = fullness_type;
       });
