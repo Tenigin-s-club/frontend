@@ -1,8 +1,16 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
+type WagonPlace = {
+  id: number;
+  number_wagon: number;
+  number_seat: number;
+  setNumberWagon: (n: number) => void;
+  setNumberSeat: (n: number) => void;
+};
+
 const useWagonPlace = create(
-  immer<any>((set) => ({
+  immer<WagonPlace>((set) => ({
     id: 1,
     number_wagon: 1,
     number_seat: 1,

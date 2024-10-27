@@ -85,6 +85,7 @@ const TicketsSlider = () => {
           className={style.dates}
           slidesPerView={isTabletOrMobile ? 2 : 3}
           freeMode={true}
+          spaceBetween={370}
           direction="horizontal"
           navigation={
             !isMobile && {
@@ -104,6 +105,7 @@ const TicketsSlider = () => {
               <Tiket {...dateItem} hasQr={true} />
             </SwiperSlide>
           ))}
+          <SwiperSlide></SwiperSlide>
         </Swiper>
         {!isMobile && (
           <div id="nextButton" className={style.SliderButton}>
