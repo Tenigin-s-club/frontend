@@ -21,7 +21,7 @@ interface TiketTypeProps extends TiketType {
 const Tiket = ({
   id,
   departure_date,
-  arriving_date,
+  arriving_data,
   start_point,
   finish_point,
   type_wagon,
@@ -76,7 +76,7 @@ const Tiket = ({
               <div className={style.path}>
                 <h4 className={style.accent}>{departure_date}</h4>
                 <p>{start_point}</p>
-                <span>{arriving_date}</span>
+                <span>{departure_date}</span>
               </div>
               <div className={style.twoTrains}>
                 {/* <p>В пути: {departure_date - arriving_date}</p> */}
@@ -84,9 +84,9 @@ const Tiket = ({
               </div>
 
               <div className={style.path}>
-                <h4 className={style.accent}>{arriving_date}</h4>
+                <h4 className={style.accent}>{arriving_data}</h4>
                 <p>{finish_point}</p>
-                <span>{arriving_date}</span>
+                <span>{arriving_data}</span>
               </div>
             </div>
           )}

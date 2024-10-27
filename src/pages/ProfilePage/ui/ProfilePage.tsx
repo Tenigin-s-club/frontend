@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { getUser } from "@/features/GetUser/model/service/GetUser/GetUser";
 import { showErrorNotification } from "@/shared/helpers/notification";
 import { AxiosError } from "axios";
+import TicketsSlider from "@/widgets/TicketsSlider";
 const ProfilePage = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<{ fio: string; email: string } | null>(null);
@@ -45,6 +46,7 @@ const ProfilePage = () => {
           <p>Выйти</p>
         </Button>
       </div>
+      <TicketsSlider />
     </div>
   );
 };

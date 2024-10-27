@@ -15,7 +15,7 @@ export interface pathType {
 export interface TiketType {
   id: string;
   departure_date: string;
-  arriving_date: string;
+  arriving_data: string;
   start_point: string;
   finish_point: string;
   type_wagon: string;
@@ -36,3 +36,4 @@ export interface TrainCardType {
 }
 
 export type getOrdersType = () => Promise<false | TiketType[]>;
+export type getTicketsWithParams = () => Promise<false | TiketType[]>;

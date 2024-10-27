@@ -17,41 +17,56 @@ const TicketsSlider = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1300px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 750px)" });
   useEffect(() => {
-    // setMyTicketsArray([
-    //   {
-    //     id: "234",
-    //     firstDate: { time: "13:20", city: "москва", date: "18:00" },
-    //     secondDate: { time: "17:20", city: "курск", date: "20:00" },
-    //     typeWagon: "купе",
-    //     typeShelf: "нижняя",
-    //     wagon: 23,
-    //     seat: 1,
-    //     travelTime: "15 часов 45 минуть",
-    //     stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-    //   },
-    //   {
-    //     id: "234",
-    //     firstDate: { time: "13:20", city: "москва", date: "18:00" },
-    //     secondDate: { time: "17:20", city: "курск", date: "20:00" },
-    //     typeWagon: "купе",
-    //     typeShelf: "нижняя",
-    //     wagon: 23,
-    //     seat: 1,
-    //     travelTime: "15 часов 45 минуть",
-    //     stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-    //   },
-    //   {
-    //     id: "234",
-    //     firstDate: { time: "13:20", city: "москва", date: "18:00" },
-    //     secondDate: { time: "17:20", city: "курск", date: "20:00" },
-    //     typeWagon: "купе",
-    //     typeShelf: "нижняя",
-    //     wagon: 23,
-    //     seat: 1,
-    //     travelTime: "15 часов 45 минуть",
-    //     stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-    //   },
-    // ]);
+    setMyTicketsArray([
+      {
+        departure_date: "14:00",
+        arriving_data: "15:00",
+        start_point: "Москва",
+        finish_point: "Курск",
+        type_wagon: "купе",
+        type_shelf: "нижняя",
+        number_wagon: 1,
+        number_seat: 10,
+        stops: ["Мосва", "адлер", "Курск"],
+        id: "23456",
+      },
+      {
+        departure_date: "14:00",
+        arriving_data: "15:00",
+        start_point: "Москва",
+        finish_point: "Курск",
+        type_wagon: "купе",
+        type_shelf: "нижняя",
+        number_wagon: 1,
+        number_seat: 10,
+        stops: ["Мосва", "адлер", "Курск"],
+        id: "23456",
+      },
+      {
+        departure_date: "14:00",
+        arriving_data: "15:00",
+        start_point: "Москва",
+        finish_point: "Курск",
+        type_wagon: "купе",
+        type_shelf: "нижняя",
+        number_wagon: 1,
+        number_seat: 10,
+        stops: ["Мосва", "адлер", "Курск"],
+        id: "23456",
+      },
+      {
+        departure_date: "14:00",
+        arriving_data: "15:00",
+        start_point: "Москва",
+        finish_point: "Курск",
+        type_wagon: "купе",
+        type_shelf: "нижняя",
+        number_wagon: 1,
+        number_seat: 10,
+        stops: ["Мосва", "адлер", "Курск"],
+        id: "23456",
+      },
+    ]);
     // запрашиваем мои билеты
   }, []);
   return (
@@ -68,7 +83,7 @@ const TicketsSlider = () => {
         )}
         <Swiper
           className={style.dates}
-          slidesPerView={isTabletOrMobile ? 1.5 : 2.5}
+          slidesPerView={isTabletOrMobile ? 2 : 3}
           freeMode={true}
           direction="horizontal"
           navigation={
@@ -86,7 +101,7 @@ const TicketsSlider = () => {
         >
           {myticketsArray?.map((dateItem, id) => (
             <SwiperSlide key={id}>
-              <Tiket {...dateItem} />
+              <Tiket {...dateItem} hasQr={true} />
             </SwiperSlide>
           ))}
         </Swiper>

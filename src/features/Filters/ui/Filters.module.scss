@@ -1,0 +1,10 @@
+@import "@styles/index.scss";
+.filter {
+  width: 30%;
+  padding: 2rem;
+  background-color: $blockBackground;
+  border-radius: $bigBorder;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
