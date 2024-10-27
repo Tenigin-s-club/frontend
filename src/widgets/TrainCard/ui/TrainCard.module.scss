@@ -37,6 +37,8 @@
     .timeLine {
       display: flex;
       align-items: center;
+      gap: 10px;
+      text-align: center;
       justify-content: space-between;
       @include mobile {
         svg,
@@ -51,6 +53,18 @@
         }
         span {
           font-size: 0.7rem;
+        }
+      }
+      .twoTrains {
+        p {
+          width: 100%;
+          font-size: 1rem;
+          text-align: center;
+          color: #555;
+          span {
+            font-size: 0.7rem;
+            color: $captionColor;
+          }
         }
       }
     }

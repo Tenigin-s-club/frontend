@@ -54,6 +54,17 @@ type WagonesType = {
 export type trainType = {
   train: WagonesType[];
 };
+export interface TrainCardAnswer {
+  stops: string[];
+  train_id: number;
+  startpoint: string;
+  startpoint_departure: string;
+  endpoint: string;
+  endpoint_arrival: string;
+  travel_time: number;
+  fullness: number;
+  suitable_wagons: number[];
+}
 
 export type getOrdersType = () => Promise<false | TiketType[]>;
 export type getTicketsWithParams = (
