@@ -1,10 +1,10 @@
 import style from "./TrainParams.module.scss";
-// import { useNavigate } from "react-router-dom";
-// import { useForm } from "react-hook-form";
 import Dropdown from "@/shared/ui/Dropdown";
 import TextDropdown from "@/shared/ui/TextDropdown";
-import { useEffect, useState } from "react";
-import { getCities } from "../model/services/TrainParams/TrainParams";
+import {
+  getCities,
+  getTrainsFetch,
+} from "../model/services/TrainParams/TrainParams";
 import { showErrorNotification } from "@/shared/helpers/notification";
 import "react-calendar/dist/Calendar.css";
 import ReverseIcon from "@/shared/assets/reverse.svg";
@@ -12,12 +12,9 @@ import Calendar from "@/shared/ui/Calendar";
 import Button from "@/shared/ui/Button";
 import { getTicketsWithParams } from "@/features/TicketsOperations/model/TicketsOperations";
 import useQueryParams from "@/entities/QueryParams/QueryParams";
+import { useState, useCallback, useEffect } from "react";
 
-type ValuePiece = Date | null;
-
-type Value = ValuePiece | [ValuePiece, ValuePiece];
-
-const countOfPassangers = [
+const countOfPassengers = [
   "1 пассажир",
   "2 пассажира",
   "3 пассажира",
@@ -33,24 +30,27 @@ const TrainParams = () => {
     setEndPoint,
     setDepartureDate,
   } = useQueryParams();
-  const [cities, setCities] = useState([]);
-  const [count, setCount] = useState<string>(countOfPassangers[0]);
 
+  const [cities, setCities] = useState([]);
+  const [areAdvancedOpen, setAreAdvancedOpen] = useState(false);
   const [areCitiesLoading, setAreCitiesLoading] = useState(false);
-  useEffect(() => {
-    (async () => {
-      setAreCitiesLoading(true);
-      try {
-        const res = await getCities();
-        setCities(res.data);
-      } catch (error) {
-        showErrorNotification("Не удалось получить информацию о городах!");
-      } finally {
-        setAreCitiesLoading(false);
-      }
-    })();
+
+  const fetchCities = useCallback(async () => {
+    setAreCitiesLoading(true);
+    try {
+      const res = await getCities();
+      setCities(res.data);
+    } catch (error) {
+      showErrorNotification("Не удалось получить информацию о городах!");
+    } finally {
+      setAreCitiesLoading(false);
+    }
   }, []);
-  // const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchCities();
+  }, [fetchCities]);
+
   if (areCitiesLoading) return <>Загрузка...</>;
 
   const fined = () => {
@@ -69,6 +69,7 @@ const TrainParams = () => {
           />
         </label>
         <button
+          type="button"
           className={style.reverseButton}
           onClick={() => {
             const dep = start_point;
@@ -99,9 +100,9 @@ const TrainParams = () => {
         <label className={style.label}>
           <span>Количество пассажиров</span>
           <Dropdown
-            options={countOfPassangers}
-            selectedOption={count}
-            setSelectedOption={setCount}
+            options={countOfPassengers}
+            selectedOption={countOfPassengers[0]}
+            setSelectedOption={(value) => setCount("count", value)}
           />
         </label>
 

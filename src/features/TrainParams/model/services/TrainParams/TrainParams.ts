@@ -4,21 +4,23 @@ import { showErrorNotification } from "@/shared/helpers/notification";
 import { AxiosError } from "axios";
 
 type TrainsParams = {
-  cityFrom: string;
-  cityTo: string;
-  date: Date;
-  id: number | null;
-  typeOfSeat: "UP" | "DOWN" | null;
-  type: "LOCAL" | "PLATZCART" | "COUPE" | "SV" | "LUX" | null;
-  timeArrives: number | null;
-  timeDepatures: number | null;
-  timeInRoad: number | null;
-  countOfPeople: number | null;
+  start_point: string;
+  end_point: string;
+  departure_date: string;
+  // id: number | null;
+  // typeOfSeat: "UP" | "DOWN" | null;
+  wagon_type: ("PLATZCART" | "COUPE")[];
+  // timeArrives: number | null;
+  // timeDepatures: number | null;
+  fullness_type: ["LOW"];
+  min_travel_time: number | null;
+  max_travel_time: number | null;
+  // countOfPeople: number | null;
 };
 
-export const getTrainsFetch = async (data: TrainsParams): Promise<string[]> => {
+export const getTrainsFetch = async (data: TrainsParams) => {
   try {
-    return await axiosInstance.get(`/trains${getQuery(data)}`, {
+    return await axiosInstance.get(`/search?${getQuery(data)}`, {
       headers: { "Content-Type": "application/json" },
     });
   } catch (e) {
