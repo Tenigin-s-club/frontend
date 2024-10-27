@@ -17,7 +17,7 @@ const WagonCard = ({ id, wagon }: WagonCard) => {
           <p>Нижние</p>
         </div>
         {wagon.map((item, id) => (
-          <Coupe key={id} cupe={item.cupe} />
+          <Coupe wagonId={id} key={id} cupe={item.cupe} />
         ))}
       </div>
 

@@ -60,14 +60,14 @@ const Tiket = ({
         </div>
         <div className={style.body}>
           <div className={style.stopsBlock}>
-            {stops.map((item, id) => (
+            {stops?.map((item, id) => (
               <p
                 key={item}
                 className={classNames(style.stops, {
-                  [style.accent]: id === 0 || id === stops.length - 1,
+                  [style.accent]: id === 0 || id === stops?.length - 1,
                 })}
               >
-                {item} {id !== stops.length - 1 && <NextArrowIcon />}
+                {item} {id !== stops?.length - 1 && <NextArrowIcon />}
               </p>
             ))}
           </div>
