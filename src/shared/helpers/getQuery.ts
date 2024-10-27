@@ -1,9 +1,12 @@
 export function getQuery(obj: Record<string, any>): string {
   const queryParams = Object.entries(obj)
-    .map(([key, value]) => {
+    .flatMap(([key, value]) => {
       const encodedKey = encodeURIComponent(key);
-      const encodedValue = encodeURIComponent(value);
-      return `${encodedKey}=${encodedValue}`;
+      if (Array.isArray(value)) {
+        return value.map((item) => `${encodedKey}=${encodeURIComponent(item)}`);
+      } else {
+        return `${encodedKey}=${encodeURIComponent(value)}`;
+      }
     })
     .join("&");
 

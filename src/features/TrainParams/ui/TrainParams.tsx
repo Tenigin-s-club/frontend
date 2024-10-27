@@ -1,4 +1,3 @@
-import plural from "plural-ru";
 import style from "./TrainParams.module.scss";
 import Dropdown from "@/shared/ui/Dropdown";
 import TextDropdown from "@/shared/ui/TextDropdown";
@@ -11,17 +10,19 @@ import Button from "@/shared/ui/Button";
 import useQueryParams from "@/entities/QueryParams/QueryParams";
 import { useState, useCallback, useEffect } from "react";
 import { formatDate, fullDateFormat } from "@/shared/helpers/date";
+import classNames from "classnames";
 
 const TrainParams = () => {
   const {
     start_point,
     end_point,
     departure_date,
+    passangers,
     setStartPoint,
     setEndPoint,
     setDepartureDate,
     setQueryParams,
-    setPassengerCount,
+    setPassengers,
   } = useQueryParams();
   const [cities, setCities] = useState([]);
   const [areCitiesLoading, setAreCitiesLoading] = useState(false);
@@ -93,13 +94,61 @@ const TrainParams = () => {
         <label className={style.label}>
           <span>Количество пассажиров</span>
           <Dropdown
-            options={Array.from({ length: 4 }).map((_, index) => (
-              <p>
-                {plural(index + 1, "%d пассажир", "%d пассажира", "пассажиров")}
-              </p>
-            ))}
-            selectedOption={1 + ""}
-            setSelectedOption={(value) => setPassengerCount(Number(value))}
+            options={[
+              <p onClick={() => setPassengers([...passangers, "upper"])}>
+                Добавить пассажира
+              </p>,
+              ...passangers.map((_, index) => (
+                <p>
+                  #{index + 1}
+                  <button
+                    className={classNames([
+                      style.button,
+                      passangers[index] === "upper" && style.buttonActive,
+                    ])}
+                    onClick={() =>
+                      setPassengers([
+                        ...passangers.slice(0, index),
+                        "upper",
+                        ...passangers.slice(index + 1),
+                      ])
+                    }
+                  >
+                    {passangers[index] === "upper"}
+                    Верхняя
+                  </button>
+                  <button
+                    className={classNames([
+                      style.button,
+                      passangers[index] === "lower" && style.buttonActive,
+                    ])}
+                    onClick={() =>
+                      setPassengers([
+                        ...passangers.slice(0, index),
+                        "lower",
+                        ...passangers.slice(index + 1),
+                      ])
+                    }
+                  >
+                    {passangers[index] === "lower"}
+                    Нижняя
+                  </button>
+                  <button
+                    className={style.button}
+                    onClick={() =>
+                      setPassengers([
+                        ...passangers.slice(0, index),
+                        ...passangers.slice(index + 1),
+                      ])
+                    }
+                  >
+                    Удалить
+                  </button>
+                </p>
+              )),
+            ]}
+            selectedOption={`${passangers.length} чел.`}
+            setSelectedOption={() => {}}
           />
         </label>
 

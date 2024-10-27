@@ -12,15 +12,15 @@ const typeOfWagon = {
 
 const typeOfShelf = [
   {
-    label: "Не имеет значения",
+    label: "Низкая",
     id: 0,
   },
   {
-    label: "Верхняя",
+    label: "Средняя",
     id: 1,
   },
   {
-    label: "Нижняя",
+    label: "Высокая",
     id: 2,
   },
 ];
@@ -59,7 +59,7 @@ const Filters = () => {
         />
       </div>
       <div className={style.label}>
-        <span>Тип полки:</span>
+        <span>Заполненность:</span>
         <Radios
           items={typeOfShelf}
           horizontal
@@ -69,14 +69,14 @@ const Filters = () => {
       </div>
 
       <FromTo
-        label={"Время поездки:"}
+        label={"Время поездки (ч.):"}
         fromValue={fromHoursInPath}
         setFromValue={(newVal: number) => setFromHoursInPath(newVal)}
         toValue={toHoursInPath}
         setToValue={(newVal: number) => setToHoursInPath(newVal)}
       />
       <FromTo
-        label={"Время отправления:"}
+        label={"Время отправления (чч:мм):"}
         fromValue={fromDepartureTime}
         setFromValue={(newVal: Date | null) => setFromDepartureTime(newVal)}
         type="time"
@@ -84,7 +84,7 @@ const Filters = () => {
         setToValue={(newVal: Date | null) => setToDepartureTime(newVal)}
       />
       <FromTo
-        label={"Время прибытия:"}
+        label={"Время прибытия (чч:мм):"}
         fromValue={fromArrivingTime}
         setFromValue={(newVal: Date | null) => setFromArrivingTime(newVal)}
         type="time"
