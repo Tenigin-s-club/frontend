@@ -1,4 +1,5 @@
 export const urls = {
-  api: "http://localhost:8080/api/v1/",
-  app: "http://localhost:5173/",
+  api: "http://194.87.102.7:8080/api/v1/",
+  app: "https://axtrain.vercel.app/
+    ",
 };
