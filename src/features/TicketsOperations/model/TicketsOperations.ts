@@ -1,5 +1,8 @@
 import axiosInstance from "@/shared/config/ApiConfig/ApiConfig";
-import { getOrdersType } from "./TicketsOperations.types";
+import {
+  getOrdersType,
+  getTicketsWithParams as ParamsType,
+} from "./TicketsOperations.types";
 
 export const getOrders: getOrdersType = async () => {
   try {
@@ -10,9 +13,9 @@ export const getOrders: getOrdersType = async () => {
   }
 };
 
-export const getTicketsWithParams: getOrdersType = async () => {
+export const getTicketsWithParams: ParamsType = async (queryParams: string) => {
   try {
-    const response = await axiosInstance.get("/account/orders");
+    const response = await axiosInstance.get(`/account/orders?${queryParams}`);
     return response?.data;
   } catch (e) {
     return false;

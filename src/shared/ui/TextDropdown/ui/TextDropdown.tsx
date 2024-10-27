@@ -74,11 +74,15 @@ const TextDropdown = ({
       />
       {isOpen && (
         <ul className={style.TextDropdown} ref={TextdropdownRef}>
-          {!!options.filter((el) =>
-            el.toLowerCase().includes(value.toLowerCase())
+          {!!options.filter(
+            (el) =>
+              el && value && el.toLowerCase().includes(value.toLowerCase())
           ).length &&
             options
-              .filter((el) => el.toLowerCase().includes(value.toLowerCase()))
+              .filter(
+                (el) =>
+                  el && value && el.toLowerCase().includes(value.toLowerCase())
+              )
               .map((option, index) => (
                 <li
                   key={index}
@@ -89,8 +93,9 @@ const TextDropdown = ({
                   <span>{option}</span>
                 </li>
               ))}
-          {!options.filter((el) =>
-            el.toLowerCase().includes(value.toLowerCase())
+          {!options.filter(
+            (el) =>
+              el && value && el.toLowerCase().includes(value.toLowerCase())
           ).length && <EmptyTextDropdown />}
         </ul>
       )}

@@ -1,5 +1,5 @@
 import style from "./Header.module.scss";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import CardIcon from "@/shared/assets/card.svg";
 import LikeIcon from "@/shared/assets/like.svg";
 import UserIcon from "@/shared/assets/user.svg";
@@ -7,7 +7,6 @@ import HomeIcon from "@/shared/assets/home.svg";
 import Logo from "@/shared/assets/Logo.svg";
 
 const Header = () => {
-  const location = useLocation();
   return (
     <header className={style.Header}>
       <Link to="/" className={style.logo}>
@@ -17,9 +16,7 @@ const Header = () => {
       <div className={style.links}>
         <NavLink
           className={({ isActive }) =>
-            isActive || location.pathname === "/search"
-              ? style.activeLink
-              : style.link
+            isActive ? style.activeLink : style.link
           }
           to={"/"}
         >

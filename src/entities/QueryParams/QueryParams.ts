@@ -3,52 +3,72 @@ import { immer } from "zustand/middleware/immer";
 
 const useQueryParams = create(
   immer<any>((set) => ({
-    query: {
-      start_point: "",
-      end_point: "",
-      departure_date: "",
-      wagon_type: [""],
-      fullnes_type: [""],
-      min_travel_time: "",
-      max_travel_time: "",
-      passenger_count: 0,
+    start_point: "",
+    end_point: "",
+    departure_date: new Date().toISOString(),
+    wagon_type: [""],
+    fullnes_type: [""],
+    min_travel_time: "",
+    max_travel_time: "",
+    passenger_count: 0,
 
-      queryParams: "",
-    },
     setStartPoint: (start_point: string) => {
       set((state) => {
-        state.query.start_point = start_point;
+        state.start_point = start_point;
       });
     },
     setEndPoint: (end_point: string) => {
       set((state) => {
-        state.query.end_point = end_point;
+        state.end_point = end_point;
       });
     },
     setDepartureDate: (departure_date: string) => {
       set((state) => {
-        state.query.departure_date = departure_date;
+        state.departure_date = departure_date;
       });
     },
     setWagonType: (wagon_type: string) => {
       set((state) => {
-        state.query.wagon_type = wagon_type;
+        state.wagon_type = wagon_type;
       });
     },
     setFullnesType: (fullnes_type: string) => {
       set((state) => {
-        state.query.fullnes_type = fullnes_type;
+        state.fullnes_type = fullnes_type;
       });
     },
     setPassengerCount: (passenger_count: string) => {
       set((state) => {
-        state.query.passenger_count = passenger_count;
+        state.passenger_count = passenger_count;
       });
     },
 
-    getQueryParams: () => {
-      set((state) => {});
-    },
+    // getQueryParams: () => {
+    //   set(
+    //     ({
+    //       start_point,
+    //       end_point,
+    //       departure_date,
+    //       wagon_type,
+    //       fullnes_type,
+    //       min_travel_time,
+    //       max_travel_time,
+    //       passenger_count,
+    //       queryParams,
+    //     }) => {
+    //       getQuery({
+    //         start_point,
+    //         end_point,
+    //         departure_date,
+    //         wagon_type,
+    //         fullnes_type,
+    //         min_travel_time,
+    //         max_travel_time,
+    //         passenger_count,
+    //       });
+    //     }
+    //   );
+    // },
   }))
 );
 

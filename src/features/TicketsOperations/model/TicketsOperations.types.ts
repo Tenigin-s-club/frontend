@@ -36,4 +36,6 @@ export interface TrainCardType {
 }
 
 export type getOrdersType = () => Promise<false | TiketType[]>;
-export type getTicketsWithParams = () => Promise<false | TiketType[]>;
+export type getTicketsWithParams = (
+  params: string
+) => Promise<false | TiketType[]>;

@@ -10,6 +10,7 @@ import Button from "@/shared/ui/Button";
 import { getTicketsWithParams } from "@/features/TicketsOperations/model/TicketsOperations";
 import useQueryParams from "@/entities/QueryParams/QueryParams";
 import { useState, useCallback, useEffect } from "react";
+import { getQuery } from "@/shared/helpers/getQuery";
 
 const countOfPassengers = [
   "1 пассажир",
@@ -26,8 +27,12 @@ const TrainParams = () => {
     setStartPoint,
     setEndPoint,
     setDepartureDate,
+    wagon_type,
+    fullnes_type,
+    max_travel_time,
+    min_travel_time,
+    passenger_count,
   } = useQueryParams();
-
   const [cities, setCities] = useState([]);
   const [areCitiesLoading, setAreCitiesLoading] = useState(false);
 
@@ -50,7 +55,18 @@ const TrainParams = () => {
   if (areCitiesLoading) return <>Загрузка...</>;
 
   const fined = () => {
-    getTicketsWithParams();
+    getTicketsWithParams(
+      getQuery({
+        start_point,
+        end_point,
+        departure_date,
+        wagon_type,
+        fullnes_type,
+        min_travel_time,
+        max_travel_time,
+        passenger_count,
+      })
+    );
   };
   return (
     <div className={style.wrapper}>
@@ -60,7 +76,7 @@ const TrainParams = () => {
           <TextDropdown
             placeholder="Введите город..."
             options={cities}
-            selectedOption={setStartPoint}
+            selectedOption={start_point}
             setSelectedOption={setStartPoint}
           />
         </label>
