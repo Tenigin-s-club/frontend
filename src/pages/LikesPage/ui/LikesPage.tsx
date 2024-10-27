@@ -1,23 +1,22 @@
+import { getAllFavorites } from "@/features/TicketsOperations/model/TicketsOperations";
+import { TiketType } from "@/features/TicketsOperations/model/TicketsOperations.types";
 import Tiket from "@/widgets/Tiket";
-import WagonCard from "@/widgets/WagonCard";
+import { useEffect, useState } from "react";
 
 const LikesPage = () => {
+  const [favoritesArray, setFavoritesArray] = useState<TiketType[] | null>(
+    null
+  );
+  useEffect(() => {
+    getAllFavorites().then((data) => data && setFavoritesArray(data));
+  }, []);
   return (
     <>
-      <Tiket
-        id={"1234567"}
-        firstDate={{ time: "11:10", city: "Moskow", date: "26 окт, сб" }}
-        secondDate={{ time: "12:10", city: "Краснодар", date: "27 окт, вб" }}
-        typeWagon="плацкарт"
-        typeShelf="верхняя"
-        wagon={14}
-        seat={5}
-        stops={["Москва"]}
-        travelTime={"3 часа 1 минуту"}
-        hasFavorite
-        hasPrice
-      />
-      <WagonCard
+      {favoritesArray?.map((item) => (
+        <Tiket {...item} />
+      ))}
+
+      {/* <WagonCard
         wagon={0}
         coupes={[
           [
@@ -229,7 +228,7 @@ const LikesPage = () => {
             },
           ],
         ]}
-      />
+      /> */}
     </>
   );
 };

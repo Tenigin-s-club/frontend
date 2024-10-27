@@ -8,6 +8,7 @@ import TwoTrainsIcon from "@/shared/assets/twoTrain.svg";
 import { TrainCardType } from "@/features/TicketsOperations/model/TicketsOperations.types";
 import classNames from "classnames";
 import NextArrowIcon from "@/shared/assets/nextArrow.svg";
+import { useNavigate } from "react-router-dom";
 
 const TrainCard = ({
   id,
@@ -20,6 +21,7 @@ const TrainCard = ({
 }: TrainCardType) => {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const stopsArr = stops?.split(" ");
+  const navigate = useNavigate();
   return (
     <div className={style.TrainCard}>
       <ShareModal
@@ -81,7 +83,7 @@ const TrainCard = ({
       {booked ? (
         <Button variant="text">Встать в очередь</Button>
       ) : (
-        <Button>Забронировать</Button>
+        <Button onClick={() => navigate(`/wagons/${id}`)}>Забронировать</Button>
       )}
     </div>
   );

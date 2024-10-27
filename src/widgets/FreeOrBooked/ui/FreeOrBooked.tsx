@@ -15,6 +15,7 @@ const FreeOrBooked = () => {
   const { queryParams, isLoading, isRequested, setIsLoading } =
     useQueryParams();
   useEffect(() => {
+<<<<<<< HEAD
     if (queryParams) {
       setIsLoading(true);
       getTicketsWithParams(queryParams)
@@ -30,6 +31,10 @@ const FreeOrBooked = () => {
         })
         .finally(() => setIsLoading(false));
     }
+=======
+    console.log(queryParams);
+    if (queryParams) getTicketsWithParams(queryParams);
+>>>>>>> b62d226 (add WagonsPage)
   }, [queryParams, isFree]);
   return (
     <div className={style.freeOrBooked}>

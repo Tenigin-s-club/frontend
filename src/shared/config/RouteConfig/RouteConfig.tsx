@@ -9,6 +9,7 @@ import AuthLayout from "@/app/layouts/authLayout";
 import MainLayout from "@/app/layouts/mainLayout";
 import { CartPage } from "@/pages/CartPage";
 import { LikesPage } from "@/pages/LikesPage";
+import { WagonsPage } from "@/pages/WagonsPage";
 
 const authRoutes: RouteObject[] = [
   {
@@ -61,6 +62,10 @@ export const appRoutersConfig = createBrowserRouter([
       {
         path: "/profile",
         element: <ProfilePage />,
+      },
+      {
+        path: "/wagons/:id",
+        element: <WagonsPage />,
       },
     ],
   },

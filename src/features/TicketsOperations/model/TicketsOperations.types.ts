@@ -1,11 +1,13 @@
 export interface sitType {
-  num: number;
+  seat_id: number;
+  seatNum: number;
   block: number;
   price: number;
   status: "FREE" | "BOOKED" | "CLOSED";
 }
 
 export type CoupeType = sitType[];
+export type WagonType = CoupeType[];
 
 export interface pathType {
   time: string;
@@ -39,3 +41,5 @@ export type getOrdersType = () => Promise<false | TiketType[]>;
 export type getTicketsWithParams = (
   params: string
 ) => Promise<false | TiketType[]>;
+
+export type getWagonsType = (TrainId: string) => Promise<false | WagonType[]>;
