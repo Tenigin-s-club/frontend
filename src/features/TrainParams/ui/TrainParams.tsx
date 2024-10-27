@@ -1,10 +1,7 @@
 import style from "./TrainParams.module.scss";
 import Dropdown from "@/shared/ui/Dropdown";
 import TextDropdown from "@/shared/ui/TextDropdown";
-import {
-  getCities,
-  getTrainsFetch,
-} from "../model/services/TrainParams/TrainParams";
+import { getCities } from "../model/services/TrainParams/TrainParams";
 import { showErrorNotification } from "@/shared/helpers/notification";
 import "react-calendar/dist/Calendar.css";
 import ReverseIcon from "@/shared/assets/reverse.svg";
@@ -32,7 +29,6 @@ const TrainParams = () => {
   } = useQueryParams();
 
   const [cities, setCities] = useState([]);
-  const [areAdvancedOpen, setAreAdvancedOpen] = useState(false);
   const [areCitiesLoading, setAreCitiesLoading] = useState(false);
 
   const fetchCities = useCallback(async () => {
@@ -102,7 +98,8 @@ const TrainParams = () => {
           <Dropdown
             options={countOfPassengers}
             selectedOption={countOfPassengers[0]}
-            setSelectedOption={(value) => setCount("count", value)}
+            setSelectedOption={() => {}}
+            // setSelectedOption={(value) => setCount("count", value)}
           />
         </label>
 

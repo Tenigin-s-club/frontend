@@ -8,6 +8,10 @@
   background-color: $blockBackground;
   padding: 1rem;
 
+  .logo {
+    width: 150px;
+  }
+
   @include mobile {
     position: fixed;
     z-index: 100;

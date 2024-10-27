@@ -9,6 +9,7 @@ import AuthLayout from "@/app/layouts/authLayout";
 import MainLayout from "@/app/layouts/mainLayout";
 import { CartPage } from "@/pages/CartPage";
 import { LikesPage } from "@/pages/LikesPage";
+import SearchPage from "@/pages/SearchPage";
 
 const authRoutes: RouteObject[] = [
   {
@@ -49,6 +50,10 @@ export const appRoutersConfig = createBrowserRouter([
       {
         path: "/",
         element: <MainPage />,
+      },
+      {
+        path: "/search",
+        element: <SearchPage />,
       },
       {
         path: "/favorite",
