@@ -7,10 +7,8 @@ import "react-calendar/dist/Calendar.css";
 import ReverseIcon from "@/shared/assets/reverse.svg";
 import Calendar from "@/shared/ui/Calendar";
 import Button from "@/shared/ui/Button";
-import { getTicketsWithParams } from "@/features/TicketsOperations/model/TicketsOperations";
 import useQueryParams from "@/entities/QueryParams/QueryParams";
 import { useState, useCallback, useEffect } from "react";
-import { getQuery } from "@/shared/helpers/getQuery";
 
 const countOfPassengers = [
   "1 пассажир",
@@ -27,11 +25,7 @@ const TrainParams = () => {
     setStartPoint,
     setEndPoint,
     setDepartureDate,
-    wagon_type,
-    fullnes_type,
-    max_travel_time,
-    min_travel_time,
-    passenger_count,
+    setQueryParams,
   } = useQueryParams();
   const [cities, setCities] = useState([]);
   const [areCitiesLoading, setAreCitiesLoading] = useState(false);
@@ -55,19 +49,34 @@ const TrainParams = () => {
   if (areCitiesLoading) return <>Загрузка...</>;
 
   const fined = () => {
-    getTicketsWithParams(
-      getQuery({
-        start_point,
-        end_point,
-        departure_date,
-        wagon_type,
-        fullnes_type,
-        min_travel_time,
-        max_travel_time,
-        passenger_count,
-      })
-    );
+    // getTicketsWithParams(
+    //   getQuery({
+    //     start_point,
+    //     end_point,
+    //     departure_date,
+    //     wagon_type,
+    //     fullnes_type,
+    //     min_travel_time,
+    //     max_travel_time,
+    //     passenger_count,
+    //   })
+    // );
+    setQueryParams();
   };
+  // useEffect(() => {
+  //   getTicketsWithParams(
+  //     getQuery({
+  //       start_point,
+  //       end_point,
+  //       departure_date,
+  //       wagon_type,
+  //       fullnes_type,
+  //       min_travel_time,
+  //       max_travel_time,
+  //       passenger_count,
+  //     })
+  //   );
+  // }, [queryParams])
   return (
     <div className={style.wrapper}>
       <div className={style.mainForm}>

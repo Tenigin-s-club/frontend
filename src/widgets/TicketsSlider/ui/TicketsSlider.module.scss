@@ -5,6 +5,10 @@
 
   align-items: center;
   justify-content: space-between;
+  .Tiket {
+    max-width: unset;
+    width: 100%;
+  }
 }
 .title {
   margin: 2rem 0;
@@ -12,9 +16,6 @@
 .dates {
   cursor: grab;
   display: flex;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   @include mobile {
     animation: opacityToggle 1s;
   }

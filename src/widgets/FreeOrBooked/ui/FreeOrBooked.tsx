@@ -3,59 +3,66 @@ import style from "./FreeOrBooked.module.scss";
 import { useEffect, useState } from "react";
 import { TrainCardType } from "@/features/TicketsOperations/model/TicketsOperations.types";
 import TrainCard from "@/widgets/TrainCard/ui/TrainCard";
+import useQueryParams from "@/entities/QueryParams/QueryParams";
+import { getTicketsWithParams } from "@/features/TicketsOperations/model/TicketsOperations";
 const FreeOrBooked = () => {
   const [isFree, setIsFree] = useState(true);
   const [trainArray, setTrainArray] = useState<null | TrainCardType[]>(null);
+  const { queryParams } = useQueryParams();
+  // useEffect(() => {
+  //   isFree
+  //     ? setTrainArray([
+  //         {
+  //           id: "21345",
+  //           firstDate: { time: "14:34", city: "Москва", date: "14 окт" },
+  //           secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
+  //           fitsFree: 34,
+  //           fitsPurchased: 2,
+  //           stops: "Москва Волгоград Ростов-на-Дону Краснодак",
+  //         },
+  //         {
+  //           id: "21345",
+  //           firstDate: { time: "14:34", city: "Москва", date: "14 окт" },
+  //           secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
+  //           fitsFree: 34,
+  //           fitsPurchased: 2,
+  //           stops: "Москва Волгоград Ростов-на-Дону Краснодак",
+  //         },
+  //       ])
+  //     : setTrainArray([
+  //         {
+  //           id: "21345",
+  //           firstDate: { time: "14:34", city: "Москва", date: "14 окт" },
+  //           secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
+  //           fitsFree: 34,
+  //           fitsPurchased: 2,
+  //           booked: true,
+  //           stops: "Москва Волгоград Ростов-на-Дону Краснодак",
+  //         },
+  //         {
+  //           id: "21345",
+  //           firstDate: { time: "14:34", city: "Москва", date: "14 окт" },
+  //           secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
+  //           fitsFree: 34,
+  //           fitsPurchased: 2,
+  //           booked: true,
+  //           stops: "Москва Волгоград Ростов-на-Дону Краснодак",
+  //         },
+  //         {
+  //           id: "21345",
+  //           firstDate: { time: "14:34", city: "Москва", date: "14 окт" },
+  //           secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
+  //           fitsFree: 34,
+  //           fitsPurchased: 2,
+  //           booked: true,
+  //           stops: "Москва Волгоград Ростов-на-Дону Краснодак",
+  //         },
+  //       ]);
+  // }, [isFree]);
   useEffect(() => {
-    isFree
-      ? setTrainArray([
-          {
-            id: "21345",
-            firstDate: { time: "14:34", city: "Москва", date: "14 окт" },
-            secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
-            fitsFree: 34,
-            fitsPurchased: 2,
-            stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-          },
-          {
-            id: "21345",
-            firstDate: { time: "14:34", city: "Москва", date: "14 окт" },
-            secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
-            fitsFree: 34,
-            fitsPurchased: 2,
-            stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-          },
-        ])
-      : setTrainArray([
-          {
-            id: "21345",
-            firstDate: { time: "14:34", city: "Москва", date: "14 окт" },
-            secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
-            fitsFree: 34,
-            fitsPurchased: 2,
-            booked: true,
-            stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-          },
-          {
-            id: "21345",
-            firstDate: { time: "14:34", city: "Москва", date: "14 окт" },
-            secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
-            fitsFree: 34,
-            fitsPurchased: 2,
-            booked: true,
-            stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-          },
-          {
-            id: "21345",
-            firstDate: { time: "14:34", city: "Москва", date: "14 окт" },
-            secondDate: { time: "14:34", city: "Москва", date: "15 окт" },
-            fitsFree: 34,
-            fitsPurchased: 2,
-            booked: true,
-            stops: "Москва Волгоград Ростов-на-Дону Краснодак",
-          },
-        ]);
-  }, [isFree]);
+    console.log(queryParams);
+    getTicketsWithParams(queryParams);
+  }, [queryParams, isFree]);
   return (
     <div className={style.freeOrBooked}>
       <div className={style.buttons}>
