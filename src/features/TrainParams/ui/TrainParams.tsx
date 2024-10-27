@@ -1,3 +1,4 @@
+import plural from "plural-ru";
 import style from "./TrainParams.module.scss";
 import Dropdown from "@/shared/ui/Dropdown";
 import TextDropdown from "@/shared/ui/TextDropdown";
@@ -9,13 +10,7 @@ import Calendar from "@/shared/ui/Calendar";
 import Button from "@/shared/ui/Button";
 import useQueryParams from "@/entities/QueryParams/QueryParams";
 import { useState, useCallback, useEffect } from "react";
-
-const countOfPassengers = [
-  "1 пассажир",
-  "2 пассажира",
-  "3 пассажира",
-  "4 пассажира",
-];
+import { formatDate, fullDateFormat } from "@/shared/helpers/date";
 
 const TrainParams = () => {
   const {
@@ -26,6 +21,7 @@ const TrainParams = () => {
     setEndPoint,
     setDepartureDate,
     setQueryParams,
+    setPassengerCount,
   } = useQueryParams();
   const [cities, setCities] = useState([]);
   const [areCitiesLoading, setAreCitiesLoading] = useState(false);
@@ -48,35 +44,7 @@ const TrainParams = () => {
 
   if (areCitiesLoading) return <>Загрузка...</>;
 
-  const fined = () => {
-    // getTicketsWithParams(
-    //   getQuery({
-    //     start_point,
-    //     end_point,
-    //     departure_date,
-    //     wagon_type,
-    //     fullness_type,
-    //     min_travel_time,
-    //     max_travel_time,
-    //     passenger_count,
-    //   })
-    // );
-    setQueryParams();
-  };
-  // useEffect(() => {
-  //   getTicketsWithParams(
-  //     getQuery({
-  //       start_point,
-  //       end_point,
-  //       departure_date,
-  //       wagon_type,
-  //       fullness_type,
-  //       min_travel_time,
-  //       max_travel_time,
-  //       passenger_count,
-  //     })
-  //   );
-  // }, [queryParams])
+  const fined = () => setQueryParams();
   return (
     <div className={style.wrapper}>
       <div className={style.mainForm}>
@@ -114,17 +82,24 @@ const TrainParams = () => {
         <label className={style.label}>
           <span>Когда</span>
           <Calendar
-            onChange={(v) => setDepartureDate(v)}
+            onChange={(v) =>
+              setDepartureDate(
+                formatDate(v as unknown as string, fullDateFormat)
+              )
+            }
             value={departure_date}
           />
         </label>
         <label className={style.label}>
           <span>Количество пассажиров</span>
           <Dropdown
-            options={countOfPassengers}
-            selectedOption={countOfPassengers[0]}
-            setSelectedOption={() => {}}
-            // setSelectedOption={(value) => setCount("count", value)}
+            options={Array.from({ length: 4 }).map((_, index) => (
+              <p>
+                {plural(index + 1, "%d пассажир", "%d пассажира", "пассажиров")}
+              </p>
+            ))}
+            selectedOption={1 + ""}
+            setSelectedOption={(value) => setPassengerCount(Number(value))}
           />
         </label>
 

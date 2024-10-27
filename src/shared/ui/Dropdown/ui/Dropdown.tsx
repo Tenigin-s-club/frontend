@@ -1,19 +1,19 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, ReactNode } from "react";
 import Input from "../../Input";
 import style from "./Dropdown.module.scss";
 import classNames from "classnames";
 
 interface DropdownProps<T> {
-  options: string[];
+  options: ReactNode[];
   selectedOption: T;
   setSelectedOption: (n: T) => void;
 }
 
-const Dropdown = ({
+const Dropdown = <T,>({
   options = [],
   selectedOption,
   setSelectedOption,
-}: DropdownProps<string>) => {
+}: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -30,7 +30,7 @@ const Dropdown = ({
     setIsOpen((prev) => !prev);
   };
 
-  const handleOptionClick = (option: string) => {
+  const handleOptionClick = (option: T) => {
     setSelectedOption(option);
     handleClick();
   };
@@ -50,7 +50,7 @@ const Dropdown = ({
       <span className={style.DropdownClickZone}>
         <Input
           onClick={handleClick}
-          value={selectedOption}
+          value={selectedOption as string}
           className={style.input}
           readOnly
         />
@@ -79,7 +79,7 @@ const Dropdown = ({
           {options.map((option, index) => (
             <li
               key={index}
-              onClick={() => handleOptionClick(option)}
+              onClick={() => handleOptionClick(index as T)}
               className={style.DropdownItem}
             >
               <span>{option}</span>

@@ -11,7 +11,7 @@ type ZustandStateConstants = {
   fullness_type: string[];
   min_travel_time: number;
   max_travel_time: number;
-  passenger_count: 0;
+  passenger_count: number;
   queryParams: string;
   isRequested: boolean;
   isLoading: boolean;
@@ -23,11 +23,12 @@ type ZustandStateReducers = {
   setDepartureDate: (item: string) => void;
   setWagonType: (item: string[]) => void;
   setFullnessType: (item: string[]) => void;
-  setPassengerCount: (item: string) => void;
-  setQueryParams: (item: string) => void;
+  setPassengerCount: (item: number) => void;
+  setIsLoading: (item: boolean) => void;
+  setQueryParams: () => void;
 };
 
-type ZustandStateType = ZustandStateReducers | ZustandStateReducers;
+type ZustandStateType = ZustandStateReducers & ZustandStateConstants;
 
 const useQueryParams = create(
   immer<ZustandStateType>((set) => ({
@@ -67,12 +68,21 @@ const useQueryParams = create(
         state.fullness_type = fullness_type;
       });
     },
-    setPassengerCount: (passenger_count: 0) => {
+    setPassengerCount: (passenger_count: number) => {
       set((state) => {
         state.passenger_count = passenger_count;
       });
     },
-
+    setIsRequested: () => {
+      set((state) => {
+        state.isRequested = true;
+      });
+    },
+    setIsLoading: (item) => {
+      set((state) => {
+        state.isLoading = item;
+      });
+    },
     setQueryParams: () => {
       set((state) => {
         const res = getQuery({

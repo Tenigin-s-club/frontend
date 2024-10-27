@@ -1,3 +1,4 @@
+import CrossWithCircleIcon from "@/shared/assets/crossWithCircle.svg";
 import Button from "@/shared/ui/Button";
 import style from "./FreeOrBooked.module.scss";
 import { useEffect, useState } from "react";
@@ -6,16 +7,28 @@ import TrainCard from "@/widgets/TrainCard/ui/TrainCard";
 import useQueryParams from "@/entities/QueryParams/QueryParams";
 import { getTicketsWithParams } from "@/features/TicketsOperations/model/TicketsOperations";
 import Loader from "@/shared/ui/Loader";
+import { showErrorNotification } from "@/shared/helpers/notification";
+import { AxiosError } from "axios";
 const FreeOrBooked = () => {
   const [isFree, setIsFree] = useState(true);
   const [trainArray, setTrainArray] = useState<TrainCardType[]>([]);
-  const { queryParams, isLoading } = useQueryParams();
+  const { queryParams, isLoading, isRequested, setIsLoading } =
+    useQueryParams();
   useEffect(() => {
     if (queryParams) {
-      getTicketsWithParams(queryParams).then((res) => {
-        if (!res) return;
-        setTrainArray(res);
-      });
+      setIsLoading(true);
+      getTicketsWithParams(queryParams)
+        .then((res) => {
+          if (!res) return;
+          setTrainArray(res);
+        })
+        .catch((e) => {
+          const error = e as AxiosError;
+          showErrorNotification(
+            "Не удалось получить информацию о билетах: " + error.message
+          );
+        })
+        .finally(() => setIsLoading(false));
     }
   }, [queryParams, isFree]);
   return (
@@ -31,7 +44,26 @@ const FreeOrBooked = () => {
       <h2>Подходящие вам:</h2>
       <div className={style.trainCards}>
         {isLoading && <Loader />}
-        {/* {!trainArray.length && !isLoading && } */}
+        {!isLoading && !isRequested && (
+          <div className={style.filterBlock}>
+            <CrossWithCircleIcon />
+            <h3>Введите фильтры</h3>
+            <p>
+              Мы не можем порекомендовать вам билеты, пока вы не поделитесь
+              своими пожеланиями
+            </p>
+          </div>
+        )}
+        {!trainArray.length && !isLoading && isRequested && (
+          <div className={style.filterBlock}>
+            <CrossWithCircleIcon />
+            <h3>Билетов нет</h3>
+            <p>
+              Нет подходящих по вашим критериям билетов. Попробуйте позже или
+              встаньте в очередь на место.
+            </p>
+          </div>
+        )}
         {!isLoading &&
           !!trainArray.length &&
           trainArray.map((item) => <TrainCard key={item.id} {...item} />)}
